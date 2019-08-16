@@ -24,8 +24,7 @@ use Aws\Exception\AwsException;
 
 
 $SnSclient = new SnsClient([
-    'profile' =>  __DIR__.'/credentials.csv',
-    'filename' => __DIR__.'/credentials.csv',
+    'profile' => 'default',
     'region'  => 'ap-southeast-1',
     'version' => '2010-03-31'
 ]);
