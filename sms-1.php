@@ -1,5 +1,9 @@
 <?php
 
+
+putenv('HOME=/var/www/html/aws');
+
+
 include  __DIR__.'/Aws/functions.php';
 include  __DIR__.'/GuzzleHttp/Promise/functions.php';
 include  __DIR__.'/GuzzleHttp/Psr7/functions.php';
@@ -20,7 +24,7 @@ use Aws\Exception\AwsException;
 
 
 $SnSclient = new SnsClient([
-    'profile' => '',
+    'profile' => 'default',
     'region'  => 'ap-southeast-1',
     'version' => '2010-03-31'
 ]);
