@@ -52,3 +52,19 @@ $result = $sns->publish($args);
 var_dump($result);
 
 
+//
+//$snsClient = new \Aws\Sns\SnsClient([
+//    'region'       => 'ap-southeast-1',                          //这是亚马逊在新加坡的服务器，具体要根据情况决定
+//    'credentials'  => [
+//        'key'      => 'AKIAU4WLISQUX6WX5WKQ',                     // AKIAU4WLISQUX6WX5WKQ
+//        'secret'   => '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', // HLSSq6UD+D3KBif3p6LHKvqMv3KBsMrmaRVTpVDU
+//    ],
+//    'version'     => '2010-03-31',    //一般在aws的官方api中会有关于这个插件的版本信息
+//    'debug'       => false,
+//]);
+//
+//$args = [
+//    'Message' => 'Hello, HTCC!',           // REQUIRED
+//    'PhoneNumber' => '+8618588432006',
+//];
+//$snsClient->publish($args);
