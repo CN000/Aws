@@ -1,12 +1,15 @@
 {
+  "version":"2.0",
   "metadata":{
     "apiVersion":"2010-03-31",
     "endpointPrefix":"sns",
+    "protocol":"query",
     "serviceAbbreviation":"Amazon SNS",
     "serviceFullName":"Amazon Simple Notification Service",
+    "serviceId":"SNS",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://sns.amazonaws.com/doc/2010-03-31/",
-    "protocol":"query"
+    "uid":"sns-2010-03-31",
+    "xmlNamespace":"http://sns.amazonaws.com/doc/2010-03-31/"
   },
   "operations":{
     "AddPermission":{
@@ -17,42 +20,28 @@
       },
       "input":{"shape":"AddPermissionInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "CheckIfPhoneNumberIsOptedOut":{
+      "name":"CheckIfPhoneNumberIsOptedOut",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CheckIfPhoneNumberIsOptedOutInput"},
+      "output":{
+        "shape":"CheckIfPhoneNumberIsOptedOutResponse",
+        "resultWrapper":"CheckIfPhoneNumberIsOptedOutResult"
+      },
+      "errors":[
+        {"shape":"ThrottledException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ConfirmSubscription":{
@@ -67,51 +56,12 @@
         "resultWrapper":"ConfirmSubscriptionResult"
       },
       "errors":[
-        {
-          "shape":"SubscriptionLimitExceededException",
-          "error":{
-            "code":"SubscriptionLimitExceeded",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SubscriptionLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"FilterPolicyLimitExceededException"}
       ]
     },
     "CreatePlatformApplication":{
@@ -126,33 +76,9 @@
         "resultWrapper":"CreatePlatformApplicationResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "CreatePlatformEndpoint":{
@@ -167,42 +93,10 @@
         "resultWrapper":"CreatePlatformEndpointResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "CreateTopic":{
@@ -217,42 +111,15 @@
         "resultWrapper":"CreateTopicResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TopicLimitExceededException",
-          "error":{
-            "code":"TopicLimitExceeded",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"TopicLimitExceededException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"},
+        {"shape":"TagLimitExceededException"},
+        {"shape":"StaleTagException"},
+        {"shape":"TagPolicyException"},
+        {"shape":"ConcurrentAccessException"}
       ]
     },
     "DeleteEndpoint":{
@@ -263,33 +130,9 @@
       },
       "input":{"shape":"DeleteEndpointInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "DeletePlatformApplication":{
@@ -300,33 +143,9 @@
       },
       "input":{"shape":"DeletePlatformApplicationInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "DeleteTopic":{
@@ -337,42 +156,13 @@
       },
       "input":{"shape":"DeleteTopicInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"StaleTagException"},
+        {"shape":"TagPolicyException"},
+        {"shape":"ConcurrentAccessException"}
       ]
     },
     "GetEndpointAttributes":{
@@ -387,42 +177,10 @@
         "resultWrapper":"GetEndpointAttributesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetPlatformApplicationAttributes":{
@@ -437,42 +195,28 @@
         "resultWrapper":"GetPlatformApplicationAttributesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetSMSAttributes":{
+      "name":"GetSMSAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSMSAttributesInput"},
+      "output":{
+        "shape":"GetSMSAttributesResponse",
+        "resultWrapper":"GetSMSAttributesResult"
+      },
+      "errors":[
+        {"shape":"ThrottledException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "GetSubscriptionAttributes":{
@@ -487,42 +231,10 @@
         "resultWrapper":"GetSubscriptionAttributesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "GetTopicAttributes":{
@@ -537,42 +249,11 @@
         "resultWrapper":"GetTopicAttributesResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"}
       ]
     },
     "ListEndpointsByPlatformApplication":{
@@ -587,42 +268,28 @@
         "resultWrapper":"ListEndpointsByPlatformApplicationResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "ListPhoneNumbersOptedOut":{
+      "name":"ListPhoneNumbersOptedOut",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPhoneNumbersOptedOutInput"},
+      "output":{
+        "shape":"ListPhoneNumbersOptedOutResponse",
+        "resultWrapper":"ListPhoneNumbersOptedOutResult"
+      },
+      "errors":[
+        {"shape":"ThrottledException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "ListPlatformApplications":{
@@ -637,33 +304,9 @@
         "resultWrapper":"ListPlatformApplicationsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "ListSubscriptions":{
@@ -678,33 +321,9 @@
         "resultWrapper":"ListSubscriptionsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "ListSubscriptionsByTopic":{
@@ -719,42 +338,29 @@
         "resultWrapper":"ListSubscriptionsByTopicResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{
+        "shape":"ListTagsForResourceResponse",
+        "resultWrapper":"ListTagsForResourceResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TagPolicyException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"ConcurrentAccessException"}
       ]
     },
     "ListTopics":{
@@ -769,33 +375,27 @@
         "resultWrapper":"ListTopicsResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
+      ]
+    },
+    "OptInPhoneNumber":{
+      "name":"OptInPhoneNumber",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"OptInPhoneNumberInput"},
+      "output":{
+        "shape":"OptInPhoneNumberResponse",
+        "resultWrapper":"OptInPhoneNumberResult"
+      },
+      "errors":[
+        {"shape":"ThrottledException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "Publish":{
@@ -810,69 +410,20 @@
         "resultWrapper":"PublishResult"
       },
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterValueException",
-          "error":{
-            "code":"ParameterValueInvalid",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"EndpointDisabledException",
-          "error":{
-            "code":"EndpointDisabled",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"PlatformApplicationDisabledException",
-          "error":{
-            "code":"PlatformApplicationDisabled",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"EndpointDisabledException"},
+        {"shape":"PlatformApplicationDisabledException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"KMSDisabledException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSNotFoundException"},
+        {"shape":"KMSOptInRequired"},
+        {"shape":"KMSThrottlingException"},
+        {"shape":"KMSAccessDeniedException"},
+        {"shape":"InvalidSecurityException"}
       ]
     },
     "RemovePermission":{
@@ -883,42 +434,10 @@
       },
       "input":{"shape":"RemovePermissionInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "SetEndpointAttributes":{
@@ -929,42 +448,10 @@
       },
       "input":{"shape":"SetEndpointAttributesInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "SetPlatformApplicationAttributes":{
@@ -975,42 +462,28 @@
       },
       "input":{"shape":"SetPlatformApplicationAttributesInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "SetSMSAttributes":{
+      "name":"SetSMSAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetSMSAttributesInput"},
+      "output":{
+        "shape":"SetSMSAttributesResponse",
+        "resultWrapper":"SetSMSAttributesResult"
+      },
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ThrottledException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "SetSubscriptionAttributes":{
@@ -1021,42 +494,11 @@
       },
       "input":{"shape":"SetSubscriptionAttributesInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"}
       ]
     },
     "SetTopicAttributes":{
@@ -1067,42 +509,11 @@
       },
       "input":{"shape":"SetTopicAttributesInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"}
       ]
     },
     "Subscribe":{
@@ -1117,51 +528,34 @@
         "resultWrapper":"SubscribeResult"
       },
       "errors":[
-        {
-          "shape":"SubscriptionLimitExceededException",
-          "error":{
-            "code":"SubscriptionLimitExceeded",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SubscriptionLimitExceededException"},
+        {"shape":"FilterPolicyLimitExceededException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"InvalidSecurityException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{
+        "shape":"TagResourceResponse",
+        "resultWrapper":"TagResourceResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TagLimitExceededException"},
+        {"shape":"StaleTagException"},
+        {"shape":"TagPolicyException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"ConcurrentAccessException"}
       ]
     },
     "Unsubscribe":{
@@ -1172,42 +566,32 @@
       },
       "input":{"shape":"UnsubscribeInput"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"AuthorizationErrorException",
-          "error":{
-            "code":"AuthorizationError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotFoundException",
-          "error":{
-            "code":"NotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InvalidSecurityException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{
+        "shape":"UntagResourceResponse",
+        "resultWrapper":"UntagResourceResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"TagLimitExceededException"},
+        {"shape":"StaleTagException"},
+        {"shape":"TagPolicyException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AuthorizationErrorException"},
+        {"shape":"ConcurrentAccessException"}
       ]
     }
   },
@@ -1231,6 +615,11 @@
         "ActionName":{"shape":"ActionsList"}
       }
     },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1
+    },
     "AuthorizationErrorException":{
       "type":"structure",
       "members":{
@@ -1244,6 +633,31 @@
       "exception":true
     },
     "Binary":{"type":"blob"},
+    "CheckIfPhoneNumberIsOptedOutInput":{
+      "type":"structure",
+      "required":["phoneNumber"],
+      "members":{
+        "phoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
+    "CheckIfPhoneNumberIsOptedOutResponse":{
+      "type":"structure",
+      "members":{
+        "isOptedOut":{"shape":"boolean"}
+      }
+    },
+    "ConcurrentAccessException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"ConcurrentAccess",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ConfirmSubscriptionInput":{
       "type":"structure",
       "required":[
@@ -1304,7 +718,9 @@
       "type":"structure",
       "required":["Name"],
       "members":{
-        "Name":{"shape":"topicName"}
+        "Name":{"shape":"topicName"},
+        "Attributes":{"shape":"TopicAttributesMap"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateTopicResponse":{
@@ -1357,6 +773,18 @@
       },
       "exception":true
     },
+    "FilterPolicyLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"FilterPolicyLimitExceeded",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "GetEndpointAttributesInput":{
       "type":"structure",
       "required":["EndpointArn"],
@@ -1381,6 +809,18 @@
       "type":"structure",
       "members":{
         "Attributes":{"shape":"MapStringToString"}
+      }
+    },
+    "GetSMSAttributesInput":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"ListString"}
+      }
+    },
+    "GetSMSAttributesResponse":{
+      "type":"structure",
+      "members":{
+        "attributes":{"shape":"MapStringToString"}
       }
     },
     "GetSubscriptionAttributesInput":{
@@ -1445,6 +885,90 @@
       },
       "exception":true
     },
+    "InvalidSecurityException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"InvalidSecurity",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSAccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSAccessDenied",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSDisabledException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSDisabled",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSInvalidStateException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSInvalidState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSOptInRequired":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSOptInRequired",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "KMSThrottlingException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"KMSThrottling",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "ListEndpointsByPlatformApplicationInput":{
       "type":"structure",
       "required":["PlatformApplicationArn"],
@@ -1468,6 +992,19 @@
       "type":"list",
       "member":{"shape":"PlatformApplication"}
     },
+    "ListPhoneNumbersOptedOutInput":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "ListPhoneNumbersOptedOutResponse":{
+      "type":"structure",
+      "members":{
+        "phoneNumbers":{"shape":"PhoneNumberList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
     "ListPlatformApplicationsInput":{
       "type":"structure",
       "members":{
@@ -1480,6 +1017,10 @@
         "PlatformApplications":{"shape":"ListOfPlatformApplications"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "ListString":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "ListSubscriptionsByTopicInput":{
       "type":"structure",
@@ -1507,6 +1048,19 @@
       "members":{
         "Subscriptions":{"shape":"SubscriptionsList"},
         "NextToken":{"shape":"nextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
       }
     },
     "ListTopicsInput":{
@@ -1559,6 +1113,23 @@
       },
       "exception":true
     },
+    "OptInPhoneNumberInput":{
+      "type":"structure",
+      "required":["phoneNumber"],
+      "members":{
+        "phoneNumber":{"shape":"PhoneNumber"}
+      }
+    },
+    "OptInPhoneNumberResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PhoneNumber":{"type":"string"},
+    "PhoneNumberList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumber"}
+    },
     "PlatformApplication":{
       "type":"structure",
       "members":{
@@ -1584,6 +1155,7 @@
       "members":{
         "TopicArn":{"shape":"topicARN"},
         "TargetArn":{"shape":"String"},
+        "PhoneNumber":{"shape":"String"},
         "Message":{"shape":"message"},
         "Subject":{"shape":"subject"},
         "MessageStructure":{"shape":"messageStructure"},
@@ -1607,6 +1179,18 @@
         "Label":{"shape":"label"}
       }
     },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"ResourceNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SetEndpointAttributesInput":{
       "type":"structure",
       "required":[
@@ -1627,6 +1211,18 @@
       "members":{
         "PlatformApplicationArn":{"shape":"String"},
         "Attributes":{"shape":"MapStringToString"}
+      }
+    },
+    "SetSMSAttributesInput":{
+      "type":"structure",
+      "required":["attributes"],
+      "members":{
+        "attributes":{"shape":"MapStringToString"}
+      }
+    },
+    "SetSMSAttributesResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "SetSubscriptionAttributesInput":{
@@ -1653,6 +1249,18 @@
         "AttributeValue":{"shape":"attributeValue"}
       }
     },
+    "StaleTagException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"StaleTag",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "String":{"type":"string"},
     "SubscribeInput":{
       "type":"structure",
@@ -1663,7 +1271,9 @@
       "members":{
         "TopicArn":{"shape":"topicARN"},
         "Protocol":{"shape":"protocol"},
-        "Endpoint":{"shape":"endpoint"}
+        "Endpoint":{"shape":"endpoint"},
+        "Attributes":{"shape":"SubscriptionAttributesMap"},
+        "ReturnSubscriptionArn":{"shape":"boolean"}
       }
     },
     "SubscribeResponse":{
@@ -1703,6 +1313,87 @@
       "type":"list",
       "member":{"shape":"Subscription"}
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"TagLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"}
+    },
+    "TagPolicyException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"TagPolicy",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "ThrottledException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"string"}
+      },
+      "error":{
+        "code":"Throttled",
+        "httpStatusCode":429,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Topic":{
       "type":"structure",
       "members":{
@@ -1737,11 +1428,28 @@
         "SubscriptionArn":{"shape":"subscriptionARN"}
       }
     },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "account":{"type":"string"},
     "action":{"type":"string"},
     "attributeName":{"type":"string"},
     "attributeValue":{"type":"string"},
     "authenticateOnUnsubscribe":{"type":"string"},
+    "boolean":{"type":"boolean"},
     "delegate":{"type":"string"},
     "endpoint":{"type":"string"},
     "label":{"type":"string"},

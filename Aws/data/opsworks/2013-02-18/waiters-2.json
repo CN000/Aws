@@ -18,6 +18,26 @@
         }
       ]
     },
+    "DeploymentSuccessful": {
+      "delay": 15,
+      "operation": "DescribeDeployments",
+      "maxAttempts": 40,
+      "description": "Wait until a deployment has completed successfully.",
+      "acceptors": [
+        {
+          "expected": "successful",
+          "matcher": "pathAll",
+          "state": "success",
+          "argument": "Deployments[].Status"
+        },
+        {
+          "expected": "failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Deployments[].Status"
+        }
+      ]
+    },
     "InstanceOnline": {
       "delay": 15,
       "operation": "DescribeInstances",
@@ -71,6 +91,68 @@
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stop_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        }
+      ]
+    },
+    "InstanceRegistered": {
+      "delay": 15,
+      "operation": "DescribeInstances",
+      "maxAttempts": 40,
+      "description": "Wait until OpsWorks instance is registered.",
+      "acceptors": [
+        {
+          "expected": "registered",
+          "matcher": "pathAll",
+          "state": "success",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "setup_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "shutting_down",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stopped",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stopping",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "terminating",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "terminated",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stop_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
         }
       ]
     },
@@ -88,12 +170,6 @@
         },
         {
           "expected": "booting",
-          "matcher": "pathAny",
-          "state": "failure",
-          "argument": "Instances[].Status"
-        },
-        {
-          "expected": "online",
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Instances[].Status"
@@ -130,6 +206,12 @@
         },
         {
           "expected": "start_failed",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Instances[].Status"
+        },
+        {
+          "expected": "stop_failed",
           "matcher": "pathAny",
           "state": "failure",
           "argument": "Instances[].Status"

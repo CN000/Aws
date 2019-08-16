@@ -3,12 +3,35 @@
   "metadata":{
     "apiVersion":"2012-12-01",
     "endpointPrefix":"redshift",
+    "protocol":"query",
     "serviceFullName":"Amazon Redshift",
+    "serviceId":"Redshift",
     "signatureVersion":"v4",
-    "xmlNamespace":"http://redshift.amazonaws.com/doc/2012-12-01/",
-    "protocol":"query"
+    "uid":"redshift-2012-12-01",
+    "xmlNamespace":"http://redshift.amazonaws.com/doc/2012-12-01/"
   },
   "operations":{
+    "AcceptReservedNodeExchange":{
+      "name":"AcceptReservedNodeExchange",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AcceptReservedNodeExchangeInputMessage"},
+      "output":{
+        "shape":"AcceptReservedNodeExchangeOutputMessage",
+        "resultWrapper":"AcceptReservedNodeExchangeResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"}
+      ]
+    },
     "AuthorizeClusterSecurityGroupIngress":{
       "name":"AuthorizeClusterSecurityGroupIngress",
       "http":{
@@ -18,46 +41,13 @@
       "input":{"shape":"AuthorizeClusterSecurityGroupIngressMessage"},
       "output":{
         "shape":"AuthorizeClusterSecurityGroupIngressResult",
-        "wrapper":true,
         "resultWrapper":"AuthorizeClusterSecurityGroupIngressResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationAlreadyExistsFault",
-          "error":{
-            "code":"AuthorizationAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationQuotaExceededFault",
-          "error":{
-            "code":"AuthorizationQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"InvalidClusterSecurityGroupStateFault"},
+        {"shape":"AuthorizationAlreadyExistsFault"},
+        {"shape":"AuthorizationQuotaExceededFault"}
       ]
     },
     "AuthorizeSnapshotAccess":{
@@ -69,37 +59,64 @@
       "input":{"shape":"AuthorizeSnapshotAccessMessage"},
       "output":{
         "shape":"AuthorizeSnapshotAccessResult",
-        "wrapper":true,
         "resultWrapper":"AuthorizeSnapshotAccessResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationAlreadyExistsFault",
-          "error":{
-            "code":"AuthorizationAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationQuotaExceededFault",
-          "error":{
-            "code":"AuthorizationQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"AuthorizationAlreadyExistsFault"},
+        {"shape":"AuthorizationQuotaExceededFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"LimitExceededFault"}
+      ]
+    },
+    "BatchDeleteClusterSnapshots":{
+      "name":"BatchDeleteClusterSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchDeleteClusterSnapshotsRequest"},
+      "output":{
+        "shape":"BatchDeleteClusterSnapshotsResult",
+        "resultWrapper":"BatchDeleteClusterSnapshotsResult"
+      },
+      "errors":[
+        {"shape":"BatchDeleteRequestSizeExceededFault"}
+      ]
+    },
+    "BatchModifyClusterSnapshots":{
+      "name":"BatchModifyClusterSnapshots",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchModifyClusterSnapshotsMessage"},
+      "output":{
+        "shape":"BatchModifyClusterSnapshotsOutputMessage",
+        "resultWrapper":"BatchModifyClusterSnapshotsResult"
+      },
+      "errors":[
+        {"shape":"InvalidRetentionPeriodFault"},
+        {"shape":"BatchModifyClusterSnapshotsLimitExceededFault"}
+      ]
+    },
+    "CancelResize":{
+      "name":"CancelResize",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelResizeMessage"},
+      "output":{
+        "shape":"ResizeProgressMessage",
+        "resultWrapper":"CancelResizeResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ResizeNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "CopyClusterSnapshot":{
@@ -111,46 +128,14 @@
       "input":{"shape":"CopyClusterSnapshotMessage"},
       "output":{
         "shape":"CopyClusterSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"CopyClusterSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSnapshotAlreadyExistsFault",
-          "error":{
-            "code":"ClusterSnapshotAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidClusterSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotQuotaExceededFault",
-          "error":{
-            "code":"ClusterSnapshotQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSnapshotAlreadyExistsFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"ClusterSnapshotQuotaExceededFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
       ]
     },
     "CreateCluster":{
@@ -162,172 +147,31 @@
       "input":{"shape":"CreateClusterMessage"},
       "output":{
         "shape":"CreateClusterResult",
-        "wrapper":true,
         "resultWrapper":"CreateClusterResult"
       },
       "errors":[
-        {
-          "shape":"ClusterAlreadyExistsFault",
-          "error":{
-            "code":"ClusterAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientClusterCapacityFault",
-          "error":{
-            "code":"InsufficientClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterQuotaExceededFault",
-          "error":{
-            "code":"ClusterQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NumberOfNodesQuotaExceededFault",
-          "error":{
-            "code":"NumberOfNodesQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NumberOfNodesPerClusterLimitExceededFault",
-          "error":{
-            "code":"NumberOfNodesPerClusterLimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSubnetGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSubnetGroupStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmClientCertificateNotFoundFault",
-          "error":{
-            "code":"HsmClientCertificateNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmConfigurationNotFoundFault",
-          "error":{
-            "code":"HsmConfigurationNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidElasticIpFault",
-          "error":{
-            "code":"InvalidElasticIpFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterAlreadyExistsFault"},
+        {"shape":"InsufficientClusterCapacityFault"},
+        {"shape":"ClusterParameterGroupNotFoundFault"},
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"ClusterQuotaExceededFault"},
+        {"shape":"NumberOfNodesQuotaExceededFault"},
+        {"shape":"NumberOfNodesPerClusterLimitExceededFault"},
+        {"shape":"ClusterSubnetGroupNotFoundFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidClusterSubnetGroupStateFault"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"HsmClientCertificateNotFoundFault"},
+        {"shape":"HsmConfigurationNotFoundFault"},
+        {"shape":"InvalidElasticIpFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidClusterTrackFault"},
+        {"shape":"SnapshotScheduleNotFoundFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
       ]
     },
     "CreateClusterParameterGroup":{
@@ -339,46 +183,13 @@
       "input":{"shape":"CreateClusterParameterGroupMessage"},
       "output":{
         "shape":"CreateClusterParameterGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateClusterParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"ClusterParameterGroupQuotaExceededFault",
-          "error":{
-            "code":"ClusterParameterGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupAlreadyExistsFault",
-          "error":{
-            "code":"ClusterParameterGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterParameterGroupQuotaExceededFault"},
+        {"shape":"ClusterParameterGroupAlreadyExistsFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateClusterSecurityGroup":{
@@ -390,46 +201,13 @@
       "input":{"shape":"CreateClusterSecurityGroupMessage"},
       "output":{
         "shape":"CreateClusterSecurityGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateClusterSecurityGroupResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSecurityGroupAlreadyExistsFault",
-          "error":{
-            "code":"ClusterSecurityGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSecurityGroupQuotaExceededFault",
-          "error":{
-            "code":"QuotaExceeded.ClusterSecurityGroup",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSecurityGroupAlreadyExistsFault"},
+        {"shape":"ClusterSecurityGroupQuotaExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateClusterSnapshot":{
@@ -441,64 +219,16 @@
       "input":{"shape":"CreateClusterSnapshotMessage"},
       "output":{
         "shape":"CreateClusterSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"CreateClusterSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSnapshotAlreadyExistsFault",
-          "error":{
-            "code":"ClusterSnapshotAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotQuotaExceededFault",
-          "error":{
-            "code":"ClusterSnapshotQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSnapshotAlreadyExistsFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ClusterSnapshotQuotaExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
       ]
     },
     "CreateClusterSubnetGroup":{
@@ -510,73 +240,17 @@
       "input":{"shape":"CreateClusterSubnetGroupMessage"},
       "output":{
         "shape":"CreateClusterSubnetGroupResult",
-        "wrapper":true,
         "resultWrapper":"CreateClusterSubnetGroupResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSubnetGroupAlreadyExistsFault",
-          "error":{
-            "code":"ClusterSubnetGroupAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetGroupQuotaExceededFault",
-          "error":{
-            "code":"ClusterSubnetGroupQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetQuotaExceededFault",
-          "error":{
-            "code":"ClusterSubnetQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSubnetGroupAlreadyExistsFault"},
+        {"shape":"ClusterSubnetGroupQuotaExceededFault"},
+        {"shape":"ClusterSubnetQuotaExceededFault"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"}
       ]
     },
     "CreateEventSubscription":{
@@ -588,109 +262,20 @@
       "input":{"shape":"CreateEventSubscriptionMessage"},
       "output":{
         "shape":"CreateEventSubscriptionResult",
-        "wrapper":true,
         "resultWrapper":"CreateEventSubscriptionResult"
       },
       "errors":[
-        {
-          "shape":"EventSubscriptionQuotaExceededFault",
-          "error":{
-            "code":"EventSubscriptionQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionAlreadyExistFault",
-          "error":{
-            "code":"SubscriptionAlreadyExist",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSInvalidTopicFault",
-          "error":{
-            "code":"SNSInvalidTopic",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSNoAuthorizationFault",
-          "error":{
-            "code":"SNSNoAuthorization",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSTopicArnNotFoundFault",
-          "error":{
-            "code":"SNSTopicArnNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionEventIdNotFoundFault",
-          "error":{
-            "code":"SubscriptionEventIdNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionCategoryNotFoundFault",
-          "error":{
-            "code":"SubscriptionCategoryNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionSeverityNotFoundFault",
-          "error":{
-            "code":"SubscriptionSeverityNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SourceNotFoundFault",
-          "error":{
-            "code":"SourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"EventSubscriptionQuotaExceededFault"},
+        {"shape":"SubscriptionAlreadyExistFault"},
+        {"shape":"SNSInvalidTopicFault"},
+        {"shape":"SNSNoAuthorizationFault"},
+        {"shape":"SNSTopicArnNotFoundFault"},
+        {"shape":"SubscriptionEventIdNotFoundFault"},
+        {"shape":"SubscriptionCategoryNotFoundFault"},
+        {"shape":"SubscriptionSeverityNotFoundFault"},
+        {"shape":"SourceNotFoundFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateHsmClientCertificate":{
@@ -702,46 +287,13 @@
       "input":{"shape":"CreateHsmClientCertificateMessage"},
       "output":{
         "shape":"CreateHsmClientCertificateResult",
-        "wrapper":true,
         "resultWrapper":"CreateHsmClientCertificateResult"
       },
       "errors":[
-        {
-          "shape":"HsmClientCertificateAlreadyExistsFault",
-          "error":{
-            "code":"HsmClientCertificateAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmClientCertificateQuotaExceededFault",
-          "error":{
-            "code":"HsmClientCertificateQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"HsmClientCertificateAlreadyExistsFault"},
+        {"shape":"HsmClientCertificateQuotaExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateHsmConfiguration":{
@@ -753,46 +305,13 @@
       "input":{"shape":"CreateHsmConfigurationMessage"},
       "output":{
         "shape":"CreateHsmConfigurationResult",
-        "wrapper":true,
         "resultWrapper":"CreateHsmConfigurationResult"
       },
       "errors":[
-        {
-          "shape":"HsmConfigurationAlreadyExistsFault",
-          "error":{
-            "code":"HsmConfigurationAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmConfigurationQuotaExceededFault",
-          "error":{
-            "code":"HsmConfigurationQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"HsmConfigurationAlreadyExistsFault"},
+        {"shape":"HsmConfigurationQuotaExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "CreateSnapshotCopyGrant":{
@@ -804,55 +323,34 @@
       "input":{"shape":"CreateSnapshotCopyGrantMessage"},
       "output":{
         "shape":"CreateSnapshotCopyGrantResult",
-        "wrapper":true,
         "resultWrapper":"CreateSnapshotCopyGrantResult"
       },
       "errors":[
-        {
-          "shape":"SnapshotCopyGrantAlreadyExistsFault",
-          "error":{
-            "code":"SnapshotCopyGrantAlreadyExistsFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyGrantQuotaExceededFault",
-          "error":{
-            "code":"SnapshotCopyGrantQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SnapshotCopyGrantAlreadyExistsFault"},
+        {"shape":"SnapshotCopyGrantQuotaExceededFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"}
+      ]
+    },
+    "CreateSnapshotSchedule":{
+      "name":"CreateSnapshotSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateSnapshotScheduleMessage"},
+      "output":{
+        "shape":"SnapshotSchedule",
+        "resultWrapper":"CreateSnapshotScheduleResult"
+      },
+      "errors":[
+        {"shape":"SnapshotScheduleAlreadyExistsFault"},
+        {"shape":"InvalidScheduleFault"},
+        {"shape":"SnapshotScheduleQuotaExceededFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"ScheduleDefinitionTypeUnsupportedFault"}
       ]
     },
     "CreateTags":{
@@ -863,33 +361,9 @@
       },
       "input":{"shape":"CreateTagsMessage"},
       "errors":[
-        {
-          "shape":"TagLimitExceededFault",
-          "error":{
-            "code":"TagLimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundFault",
-          "error":{
-            "code":"ResourceNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DeleteCluster":{
@@ -901,46 +375,14 @@
       "input":{"shape":"DeleteClusterMessage"},
       "output":{
         "shape":"DeleteClusterResult",
-        "wrapper":true,
         "resultWrapper":"DeleteClusterResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotAlreadyExistsFault",
-          "error":{
-            "code":"ClusterSnapshotAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotQuotaExceededFault",
-          "error":{
-            "code":"ClusterSnapshotQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterSnapshotAlreadyExistsFault"},
+        {"shape":"ClusterSnapshotQuotaExceededFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
       ]
     },
     "DeleteClusterParameterGroup":{
@@ -951,24 +393,8 @@
       },
       "input":{"shape":"DeleteClusterParameterGroupMessage"},
       "errors":[
-        {
-          "shape":"InvalidClusterParameterGroupStateFault",
-          "error":{
-            "code":"InvalidClusterParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterParameterGroupStateFault"},
+        {"shape":"ClusterParameterGroupNotFoundFault"}
       ]
     },
     "DeleteClusterSecurityGroup":{
@@ -979,24 +405,8 @@
       },
       "input":{"shape":"DeleteClusterSecurityGroupMessage"},
       "errors":[
-        {
-          "shape":"InvalidClusterSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterSecurityGroupStateFault"},
+        {"shape":"ClusterSecurityGroupNotFoundFault"}
       ]
     },
     "DeleteClusterSnapshot":{
@@ -1008,28 +418,11 @@
       "input":{"shape":"DeleteClusterSnapshotMessage"},
       "output":{
         "shape":"DeleteClusterSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"DeleteClusterSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"InvalidClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidClusterSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"}
       ]
     },
     "DeleteClusterSubnetGroup":{
@@ -1040,33 +433,9 @@
       },
       "input":{"shape":"DeleteClusterSubnetGroupMessage"},
       "errors":[
-        {
-          "shape":"InvalidClusterSubnetGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSubnetGroupStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSubnetStateFault",
-          "error":{
-            "code":"InvalidClusterSubnetStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterSubnetGroupStateFault"},
+        {"shape":"InvalidClusterSubnetStateFault"},
+        {"shape":"ClusterSubnetGroupNotFoundFault"}
       ]
     },
     "DeleteEventSubscription":{
@@ -1077,24 +446,8 @@
       },
       "input":{"shape":"DeleteEventSubscriptionMessage"},
       "errors":[
-        {
-          "shape":"SubscriptionNotFoundFault",
-          "error":{
-            "code":"SubscriptionNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubscriptionStateFault",
-          "error":{
-            "code":"InvalidSubscriptionStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"InvalidSubscriptionStateFault"}
       ]
     },
     "DeleteHsmClientCertificate":{
@@ -1105,24 +458,8 @@
       },
       "input":{"shape":"DeleteHsmClientCertificateMessage"},
       "errors":[
-        {
-          "shape":"InvalidHsmClientCertificateStateFault",
-          "error":{
-            "code":"InvalidHsmClientCertificateStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmClientCertificateNotFoundFault",
-          "error":{
-            "code":"HsmClientCertificateNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidHsmClientCertificateStateFault"},
+        {"shape":"HsmClientCertificateNotFoundFault"}
       ]
     },
     "DeleteHsmConfiguration":{
@@ -1133,24 +470,8 @@
       },
       "input":{"shape":"DeleteHsmConfigurationMessage"},
       "errors":[
-        {
-          "shape":"InvalidHsmConfigurationStateFault",
-          "error":{
-            "code":"InvalidHsmConfigurationStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmConfigurationNotFoundFault",
-          "error":{
-            "code":"HsmConfigurationNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidHsmConfigurationStateFault"},
+        {"shape":"HsmConfigurationNotFoundFault"}
       ]
     },
     "DeleteSnapshotCopyGrant":{
@@ -1161,24 +482,20 @@
       },
       "input":{"shape":"DeleteSnapshotCopyGrantMessage"},
       "errors":[
-        {
-          "shape":"InvalidSnapshotCopyGrantStateFault",
-          "error":{
-            "code":"InvalidSnapshotCopyGrantStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyGrantNotFoundFault",
-          "error":{
-            "code":"SnapshotCopyGrantNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidSnapshotCopyGrantStateFault"},
+        {"shape":"SnapshotCopyGrantNotFoundFault"}
+      ]
+    },
+    "DeleteSnapshotSchedule":{
+      "name":"DeleteSnapshotSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSnapshotScheduleMessage"},
+      "errors":[
+        {"shape":"InvalidClusterSnapshotScheduleStateFault"},
+        {"shape":"SnapshotScheduleNotFoundFault"}
       ]
     },
     "DeleteTags":{
@@ -1189,24 +506,36 @@
       },
       "input":{"shape":"DeleteTagsMessage"},
       "errors":[
-        {
-          "shape":"ResourceNotFoundFault",
-          "error":{
-            "code":"ResourceNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidTagFault"}
+      ]
+    },
+    "DescribeAccountAttributes":{
+      "name":"DescribeAccountAttributes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccountAttributesMessage"},
+      "output":{
+        "shape":"AccountAttributeList",
+        "resultWrapper":"DescribeAccountAttributesResult"
+      }
+    },
+    "DescribeClusterDbRevisions":{
+      "name":"DescribeClusterDbRevisions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClusterDbRevisionsMessage"},
+      "output":{
+        "shape":"ClusterDbRevisionsMessage",
+        "resultWrapper":"DescribeClusterDbRevisionsResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "DescribeClusterParameterGroups":{
@@ -1221,24 +550,8 @@
         "resultWrapper":"DescribeClusterParameterGroupsResult"
       },
       "errors":[
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterParameterGroupNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeClusterParameters":{
@@ -1253,15 +566,7 @@
         "resultWrapper":"DescribeClusterParametersResult"
       },
       "errors":[
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterParameterGroupNotFoundFault"}
       ]
     },
     "DescribeClusterSecurityGroups":{
@@ -1276,24 +581,8 @@
         "resultWrapper":"DescribeClusterSecurityGroupsResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeClusterSnapshots":{
@@ -1308,24 +597,9 @@
         "resultWrapper":"DescribeClusterSnapshotsResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeClusterSubnetGroups":{
@@ -1340,24 +614,24 @@
         "resultWrapper":"DescribeClusterSubnetGroupsResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSubnetGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSubnetGroupNotFoundFault"},
+        {"shape":"InvalidTagFault"}
+      ]
+    },
+    "DescribeClusterTracks":{
+      "name":"DescribeClusterTracks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClusterTracksMessage"},
+      "output":{
+        "shape":"TrackListMessage",
+        "resultWrapper":"DescribeClusterTracksResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterTrackFault"},
+        {"shape":"UnauthorizedOperation"}
       ]
     },
     "DescribeClusterVersions":{
@@ -1384,24 +658,8 @@
         "resultWrapper":"DescribeClustersResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeDefaultClusterParameters":{
@@ -1413,7 +671,6 @@
       "input":{"shape":"DescribeDefaultClusterParametersMessage"},
       "output":{
         "shape":"DescribeDefaultClusterParametersResult",
-        "wrapper":true,
         "resultWrapper":"DescribeDefaultClusterParametersResult"
       }
     },
@@ -1441,15 +698,8 @@
         "resultWrapper":"DescribeEventSubscriptionsResult"
       },
       "errors":[
-        {
-          "shape":"SubscriptionNotFoundFault",
-          "error":{
-            "code":"SubscriptionNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeEvents":{
@@ -1476,24 +726,8 @@
         "resultWrapper":"DescribeHsmClientCertificatesResult"
       },
       "errors":[
-        {
-          "shape":"HsmClientCertificateNotFoundFault",
-          "error":{
-            "code":"HsmClientCertificateNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"HsmClientCertificateNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeHsmConfigurations":{
@@ -1508,24 +742,8 @@
         "resultWrapper":"DescribeHsmConfigurationsResult"
       },
       "errors":[
-        {
-          "shape":"HsmConfigurationNotFoundFault",
-          "error":{
-            "code":"HsmConfigurationNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"HsmConfigurationNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DescribeLoggingStatus":{
@@ -1540,15 +758,7 @@
         "resultWrapper":"DescribeLoggingStatusResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "DescribeOrderableClusterOptions":{
@@ -1575,24 +785,9 @@
         "resultWrapper":"DescribeReservedNodeOfferingsResult"
       },
       "errors":[
-        {
-          "shape":"ReservedNodeOfferingNotFoundFault",
-          "error":{
-            "code":"ReservedNodeOfferingNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedOperationFault",
-          "error":{
-            "code":"UnsupportedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"}
       ]
     },
     "DescribeReservedNodes":{
@@ -1607,15 +802,8 @@
         "resultWrapper":"DescribeReservedNodesResult"
       },
       "errors":[
-        {
-          "shape":"ReservedNodeNotFoundFault",
-          "error":{
-            "code":"ReservedNodeNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"DependentServiceUnavailableFault"}
       ]
     },
     "DescribeResize":{
@@ -1630,24 +818,8 @@
         "resultWrapper":"DescribeResizeResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResizeNotFoundFault",
-          "error":{
-            "code":"ResizeNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ResizeNotFoundFault"}
       ]
     },
     "DescribeSnapshotCopyGrants":{
@@ -1662,24 +834,47 @@
         "resultWrapper":"DescribeSnapshotCopyGrantsResult"
       },
       "errors":[
-        {
-          "shape":"SnapshotCopyGrantNotFoundFault",
-          "error":{
-            "code":"SnapshotCopyGrantNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SnapshotCopyGrantNotFoundFault"},
+        {"shape":"InvalidTagFault"}
+      ]
+    },
+    "DescribeSnapshotSchedules":{
+      "name":"DescribeSnapshotSchedules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSnapshotSchedulesMessage"},
+      "output":{
+        "shape":"DescribeSnapshotSchedulesOutputMessage",
+        "resultWrapper":"DescribeSnapshotSchedulesResult"
+      }
+    },
+    "DescribeStorage":{
+      "name":"DescribeStorage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "output":{
+        "shape":"CustomerStorageMessage",
+        "resultWrapper":"DescribeStorageResult"
+      }
+    },
+    "DescribeTableRestoreStatus":{
+      "name":"DescribeTableRestoreStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTableRestoreStatusMessage"},
+      "output":{
+        "shape":"TableRestoreStatusMessage",
+        "resultWrapper":"DescribeTableRestoreStatusResult"
+      },
+      "errors":[
+        {"shape":"TableRestoreNotFoundFault"},
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "DescribeTags":{
@@ -1694,24 +889,8 @@
         "resultWrapper":"DescribeTagsResult"
       },
       "errors":[
-        {
-          "shape":"ResourceNotFoundFault",
-          "error":{
-            "code":"ResourceNotFoundFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagFault",
-          "error":{
-            "code":"InvalidTagFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"InvalidTagFault"}
       ]
     },
     "DisableLogging":{
@@ -1726,15 +905,7 @@
         "resultWrapper":"DisableLoggingResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "DisableSnapshotCopy":{
@@ -1746,46 +917,13 @@
       "input":{"shape":"DisableSnapshotCopyMessage"},
       "output":{
         "shape":"DisableSnapshotCopyResult",
-        "wrapper":true,
         "resultWrapper":"DisableSnapshotCopyResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyAlreadyDisabledFault",
-          "error":{
-            "code":"SnapshotCopyAlreadyDisabledFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"SnapshotCopyAlreadyDisabledFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"UnauthorizedOperation"}
       ]
     },
     "EnableLogging":{
@@ -1800,51 +938,11 @@
         "resultWrapper":"EnableLoggingResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"BucketNotFoundFault",
-          "error":{
-            "code":"BucketNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientS3BucketPolicyFault",
-          "error":{
-            "code":"InsufficientS3BucketPolicyFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidS3KeyPrefixFault",
-          "error":{
-            "code":"InvalidS3KeyPrefixFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidS3BucketNameFault",
-          "error":{
-            "code":"InvalidS3BucketNameFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"BucketNotFoundFault"},
+        {"shape":"InsufficientS3BucketPolicyFault"},
+        {"shape":"InvalidS3KeyPrefixFault"},
+        {"shape":"InvalidS3BucketNameFault"}
       ]
     },
     "EnableSnapshotCopy":{
@@ -1856,91 +954,56 @@
       "input":{"shape":"EnableSnapshotCopyMessage"},
       "output":{
         "shape":"EnableSnapshotCopyResult",
-        "wrapper":true,
         "resultWrapper":"EnableSnapshotCopyResult"
       },
       "errors":[
-        {
-          "shape":"IncompatibleOrderableOptions",
-          "error":{
-            "code":"IncompatibleOrderableOptions",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"CopyToRegionDisabledFault",
-          "error":{
-            "code":"CopyToRegionDisabledFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyAlreadyEnabledFault",
-          "error":{
-            "code":"SnapshotCopyAlreadyEnabledFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnknownSnapshotCopyRegionFault",
-          "error":{
-            "code":"UnknownSnapshotCopyRegionFault",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyGrantNotFoundFault",
-          "error":{
-            "code":"SnapshotCopyGrantNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"IncompatibleOrderableOptions"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"CopyToRegionDisabledFault"},
+        {"shape":"SnapshotCopyAlreadyEnabledFault"},
+        {"shape":"UnknownSnapshotCopyRegionFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"SnapshotCopyGrantNotFoundFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
+      ]
+    },
+    "GetClusterCredentials":{
+      "name":"GetClusterCredentials",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetClusterCredentialsMessage"},
+      "output":{
+        "shape":"ClusterCredentials",
+        "resultWrapper":"GetClusterCredentialsResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "GetReservedNodeExchangeOfferings":{
+      "name":"GetReservedNodeExchangeOfferings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetReservedNodeExchangeOfferingsInputMessage"},
+      "output":{
+        "shape":"GetReservedNodeExchangeOfferingsOutputMessage",
+        "resultWrapper":"GetReservedNodeExchangeOfferingsResult"
+      },
+      "errors":[
+        {"shape":"ReservedNodeNotFoundFault"},
+        {"shape":"InvalidReservedNodeStateFault"},
+        {"shape":"ReservedNodeAlreadyMigratedFault"},
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"DependentServiceUnavailableFault"}
       ]
     },
     "ModifyCluster":{
@@ -1952,127 +1015,76 @@
       "input":{"shape":"ModifyClusterMessage"},
       "output":{
         "shape":"ModifyClusterResult",
-        "wrapper":true,
         "resultWrapper":"ModifyClusterResult"
       },
       "errors":[
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NumberOfNodesQuotaExceededFault",
-          "error":{
-            "code":"NumberOfNodesQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientClusterCapacityFault",
-          "error":{
-            "code":"InsufficientClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedOptionFault",
-          "error":{
-            "code":"UnsupportedOptionFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmClientCertificateNotFoundFault",
-          "error":{
-            "code":"HsmClientCertificateNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmConfigurationNotFoundFault",
-          "error":{
-            "code":"HsmConfigurationNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterAlreadyExistsFault",
-          "error":{
-            "code":"ClusterAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"InvalidClusterSecurityGroupStateFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"NumberOfNodesQuotaExceededFault"},
+        {"shape":"NumberOfNodesPerClusterLimitExceededFault"},
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"ClusterParameterGroupNotFoundFault"},
+        {"shape":"InsufficientClusterCapacityFault"},
+        {"shape":"UnsupportedOptionFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"HsmClientCertificateNotFoundFault"},
+        {"shape":"HsmConfigurationNotFoundFault"},
+        {"shape":"ClusterAlreadyExistsFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidElasticIpFault"},
+        {"shape":"TableLimitExceededFault"},
+        {"shape":"InvalidClusterTrackFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
+      ]
+    },
+    "ModifyClusterDbRevision":{
+      "name":"ModifyClusterDbRevision",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterDbRevisionMessage"},
+      "output":{
+        "shape":"ModifyClusterDbRevisionResult",
+        "resultWrapper":"ModifyClusterDbRevisionResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"ClusterOnLatestRevisionFault"},
+        {"shape":"InvalidClusterStateFault"}
+      ]
+    },
+    "ModifyClusterIamRoles":{
+      "name":"ModifyClusterIamRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterIamRolesMessage"},
+      "output":{
+        "shape":"ModifyClusterIamRolesResult",
+        "resultWrapper":"ModifyClusterIamRolesResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"}
+      ]
+    },
+    "ModifyClusterMaintenance":{
+      "name":"ModifyClusterMaintenance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterMaintenanceMessage"},
+      "output":{
+        "shape":"ModifyClusterMaintenanceResult",
+        "resultWrapper":"ModifyClusterMaintenanceResult"
+      },
+      "errors":[
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "ModifyClusterParameterGroup":{
@@ -2087,24 +1099,38 @@
         "resultWrapper":"ModifyClusterParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterParameterGroupStateFault",
-          "error":{
-            "code":"InvalidClusterParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterParameterGroupNotFoundFault"},
+        {"shape":"InvalidClusterParameterGroupStateFault"}
+      ]
+    },
+    "ModifyClusterSnapshot":{
+      "name":"ModifyClusterSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterSnapshotMessage"},
+      "output":{
+        "shape":"ModifyClusterSnapshotResult",
+        "resultWrapper":"ModifyClusterSnapshotResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
+      ]
+    },
+    "ModifyClusterSnapshotSchedule":{
+      "name":"ModifyClusterSnapshotSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyClusterSnapshotScheduleMessage"},
+      "errors":[
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"SnapshotScheduleNotFoundFault"},
+        {"shape":"InvalidClusterSnapshotScheduleStateFault"}
       ]
     },
     "ModifyClusterSubnetGroup":{
@@ -2116,55 +1142,15 @@
       "input":{"shape":"ModifyClusterSubnetGroupMessage"},
       "output":{
         "shape":"ModifyClusterSubnetGroupResult",
-        "wrapper":true,
         "resultWrapper":"ModifyClusterSubnetGroupResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSubnetGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetQuotaExceededFault",
-          "error":{
-            "code":"ClusterSubnetQuotaExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubnetAlreadyInUse",
-          "error":{
-            "code":"SubnetAlreadyInUse",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSubnetGroupNotFoundFault"},
+        {"shape":"ClusterSubnetQuotaExceededFault"},
+        {"shape":"SubnetAlreadyInUse"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"DependentServiceRequestThrottlingFault"}
       ]
     },
     "ModifyEventSubscription":{
@@ -2176,91 +1162,18 @@
       "input":{"shape":"ModifyEventSubscriptionMessage"},
       "output":{
         "shape":"ModifyEventSubscriptionResult",
-        "wrapper":true,
         "resultWrapper":"ModifyEventSubscriptionResult"
       },
       "errors":[
-        {
-          "shape":"SubscriptionNotFoundFault",
-          "error":{
-            "code":"SubscriptionNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSInvalidTopicFault",
-          "error":{
-            "code":"SNSInvalidTopic",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSNoAuthorizationFault",
-          "error":{
-            "code":"SNSNoAuthorization",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SNSTopicArnNotFoundFault",
-          "error":{
-            "code":"SNSTopicArnNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionEventIdNotFoundFault",
-          "error":{
-            "code":"SubscriptionEventIdNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionCategoryNotFoundFault",
-          "error":{
-            "code":"SubscriptionCategoryNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SubscriptionSeverityNotFoundFault",
-          "error":{
-            "code":"SubscriptionSeverityNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SourceNotFoundFault",
-          "error":{
-            "code":"SourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubscriptionStateFault",
-          "error":{
-            "code":"InvalidSubscriptionStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"SNSInvalidTopicFault"},
+        {"shape":"SNSNoAuthorizationFault"},
+        {"shape":"SNSTopicArnNotFoundFault"},
+        {"shape":"SubscriptionEventIdNotFoundFault"},
+        {"shape":"SubscriptionCategoryNotFoundFault"},
+        {"shape":"SubscriptionSeverityNotFoundFault"},
+        {"shape":"SourceNotFoundFault"},
+        {"shape":"InvalidSubscriptionStateFault"}
       ]
     },
     "ModifySnapshotCopyRetentionPeriod":{
@@ -2272,46 +1185,31 @@
       "input":{"shape":"ModifySnapshotCopyRetentionPeriodMessage"},
       "output":{
         "shape":"ModifySnapshotCopyRetentionPeriodResult",
-        "wrapper":true,
         "resultWrapper":"ModifySnapshotCopyRetentionPeriodResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"SnapshotCopyDisabledFault",
-          "error":{
-            "code":"SnapshotCopyDisabledFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"SnapshotCopyDisabledFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"InvalidRetentionPeriodFault"}
+      ]
+    },
+    "ModifySnapshotSchedule":{
+      "name":"ModifySnapshotSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifySnapshotScheduleMessage"},
+      "output":{
+        "shape":"SnapshotSchedule",
+        "resultWrapper":"ModifySnapshotScheduleResult"
+      },
+      "errors":[
+        {"shape":"InvalidScheduleFault"},
+        {"shape":"SnapshotScheduleNotFoundFault"},
+        {"shape":"SnapshotScheduleUpdateInProgressFault"}
       ]
     },
     "PurchaseReservedNodeOffering":{
@@ -2323,46 +1221,13 @@
       "input":{"shape":"PurchaseReservedNodeOfferingMessage"},
       "output":{
         "shape":"PurchaseReservedNodeOfferingResult",
-        "wrapper":true,
         "resultWrapper":"PurchaseReservedNodeOfferingResult"
       },
       "errors":[
-        {
-          "shape":"ReservedNodeOfferingNotFoundFault",
-          "error":{
-            "code":"ReservedNodeOfferingNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ReservedNodeAlreadyExistsFault",
-          "error":{
-            "code":"ReservedNodeAlreadyExists",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ReservedNodeQuotaExceededFault",
-          "error":{
-            "code":"ReservedNodeQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnsupportedOperationFault",
-          "error":{
-            "code":"UnsupportedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ReservedNodeOfferingNotFoundFault"},
+        {"shape":"ReservedNodeAlreadyExistsFault"},
+        {"shape":"ReservedNodeQuotaExceededFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "RebootCluster":{
@@ -2374,28 +1239,11 @@
       "input":{"shape":"RebootClusterMessage"},
       "output":{
         "shape":"RebootClusterResult",
-        "wrapper":true,
         "resultWrapper":"RebootClusterResult"
       },
       "errors":[
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"}
       ]
     },
     "ResetClusterParameterGroup":{
@@ -2410,24 +1258,31 @@
         "resultWrapper":"ResetClusterParameterGroupResult"
       },
       "errors":[
-        {
-          "shape":"InvalidClusterParameterGroupStateFault",
-          "error":{
-            "code":"InvalidClusterParameterGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidClusterParameterGroupStateFault"},
+        {"shape":"ClusterParameterGroupNotFoundFault"}
+      ]
+    },
+    "ResizeCluster":{
+      "name":"ResizeCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ResizeClusterMessage"},
+      "output":{
+        "shape":"ResizeClusterResult",
+        "resultWrapper":"ResizeClusterResult"
+      },
+      "errors":[
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"NumberOfNodesQuotaExceededFault"},
+        {"shape":"NumberOfNodesPerClusterLimitExceededFault"},
+        {"shape":"InsufficientClusterCapacityFault"},
+        {"shape":"UnsupportedOptionFault"},
+        {"shape":"UnsupportedOperationFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"LimitExceededFault"}
       ]
     },
     "RestoreFromClusterSnapshot":{
@@ -2439,190 +1294,55 @@
       "input":{"shape":"RestoreFromClusterSnapshotMessage"},
       "output":{
         "shape":"RestoreFromClusterSnapshotResult",
-        "wrapper":true,
         "resultWrapper":"RestoreFromClusterSnapshotResult"
       },
       "errors":[
-        {
-          "shape":"AccessToSnapshotDeniedFault",
-          "error":{
-            "code":"AccessToSnapshotDenied",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterAlreadyExistsFault",
-          "error":{
-            "code":"ClusterAlreadyExists",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterQuotaExceededFault",
-          "error":{
-            "code":"ClusterQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InsufficientClusterCapacityFault",
-          "error":{
-            "code":"InsufficientClusterCapacity",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSnapshotStateFault",
-          "error":{
-            "code":"InvalidClusterSnapshotState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidRestoreFault",
-          "error":{
-            "code":"InvalidRestore",
-            "httpStatusCode":406,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NumberOfNodesQuotaExceededFault",
-          "error":{
-            "code":"NumberOfNodesQuotaExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NumberOfNodesPerClusterLimitExceededFault",
-          "error":{
-            "code":"NumberOfNodesPerClusterLimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidVPCNetworkStateFault",
-          "error":{
-            "code":"InvalidVPCNetworkStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSubnetGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSubnetGroupStateFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidSubnet",
-          "error":{
-            "code":"InvalidSubnet",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSubnetGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSubnetGroupNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"UnauthorizedOperation",
-          "error":{
-            "code":"UnauthorizedOperation",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmClientCertificateNotFoundFault",
-          "error":{
-            "code":"HsmClientCertificateNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"HsmConfigurationNotFoundFault",
-          "error":{
-            "code":"HsmConfigurationNotFoundFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidElasticIpFault",
-          "error":{
-            "code":"InvalidElasticIpFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterParameterGroupNotFoundFault",
-          "error":{
-            "code":"ClusterParameterGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededFault",
-          "error":{
-            "code":"LimitExceededFault",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AccessToSnapshotDeniedFault"},
+        {"shape":"ClusterAlreadyExistsFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"ClusterQuotaExceededFault"},
+        {"shape":"InsufficientClusterCapacityFault"},
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"InvalidRestoreFault"},
+        {"shape":"NumberOfNodesQuotaExceededFault"},
+        {"shape":"NumberOfNodesPerClusterLimitExceededFault"},
+        {"shape":"InvalidVPCNetworkStateFault"},
+        {"shape":"InvalidClusterSubnetGroupStateFault"},
+        {"shape":"InvalidSubnet"},
+        {"shape":"ClusterSubnetGroupNotFoundFault"},
+        {"shape":"UnauthorizedOperation"},
+        {"shape":"HsmClientCertificateNotFoundFault"},
+        {"shape":"HsmConfigurationNotFoundFault"},
+        {"shape":"InvalidElasticIpFault"},
+        {"shape":"ClusterParameterGroupNotFoundFault"},
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"LimitExceededFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"},
+        {"shape":"InvalidClusterTrackFault"},
+        {"shape":"SnapshotScheduleNotFoundFault"},
+        {"shape":"TagLimitExceededFault"},
+        {"shape":"InvalidTagFault"}
+      ]
+    },
+    "RestoreTableFromClusterSnapshot":{
+      "name":"RestoreTableFromClusterSnapshot",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RestoreTableFromClusterSnapshotMessage"},
+      "output":{
+        "shape":"RestoreTableFromClusterSnapshotResult",
+        "resultWrapper":"RestoreTableFromClusterSnapshotResult"
+      },
+      "errors":[
+        {"shape":"ClusterSnapshotNotFoundFault"},
+        {"shape":"InProgressTableRestoreQuotaExceededFault"},
+        {"shape":"InvalidClusterSnapshotStateFault"},
+        {"shape":"InvalidTableRestoreArgumentFault"},
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"UnsupportedOperationFault"}
       ]
     },
     "RevokeClusterSecurityGroupIngress":{
@@ -2634,37 +1354,12 @@
       "input":{"shape":"RevokeClusterSecurityGroupIngressMessage"},
       "output":{
         "shape":"RevokeClusterSecurityGroupIngressResult",
-        "wrapper":true,
         "resultWrapper":"RevokeClusterSecurityGroupIngressResult"
       },
       "errors":[
-        {
-          "shape":"ClusterSecurityGroupNotFoundFault",
-          "error":{
-            "code":"ClusterSecurityGroupNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterSecurityGroupStateFault",
-          "error":{
-            "code":"InvalidClusterSecurityGroupState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterSecurityGroupNotFoundFault"},
+        {"shape":"AuthorizationNotFoundFault"},
+        {"shape":"InvalidClusterSecurityGroupStateFault"}
       ]
     },
     "RevokeSnapshotAccess":{
@@ -2676,37 +1371,12 @@
       "input":{"shape":"RevokeSnapshotAccessMessage"},
       "output":{
         "shape":"RevokeSnapshotAccessResult",
-        "wrapper":true,
         "resultWrapper":"RevokeSnapshotAccessResult"
       },
       "errors":[
-        {
-          "shape":"AccessToSnapshotDeniedFault",
-          "error":{
-            "code":"AccessToSnapshotDenied",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AuthorizationNotFoundFault",
-          "error":{
-            "code":"AuthorizationNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ClusterSnapshotNotFoundFault",
-          "error":{
-            "code":"ClusterSnapshotNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"AccessToSnapshotDeniedFault"},
+        {"shape":"AuthorizationNotFoundFault"},
+        {"shape":"ClusterSnapshotNotFoundFault"}
       ]
     },
     "RotateEncryptionKey":{
@@ -2718,32 +1388,33 @@
       "input":{"shape":"RotateEncryptionKeyMessage"},
       "output":{
         "shape":"RotateEncryptionKeyResult",
-        "wrapper":true,
         "resultWrapper":"RotateEncryptionKeyResult"
       },
       "errors":[
-        {
-          "shape":"ClusterNotFoundFault",
-          "error":{
-            "code":"ClusterNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidClusterStateFault",
-          "error":{
-            "code":"InvalidClusterState",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"},
+        {"shape":"DependentServiceRequestThrottlingFault"}
       ]
     }
   },
   "shapes":{
+    "AcceptReservedNodeExchangeInputMessage":{
+      "type":"structure",
+      "required":[
+        "ReservedNodeId",
+        "TargetReservedNodeOfferingId"
+      ],
+      "members":{
+        "ReservedNodeId":{"shape":"String"},
+        "TargetReservedNodeOfferingId":{"shape":"String"}
+      }
+    },
+    "AcceptReservedNodeExchangeOutputMessage":{
+      "type":"structure",
+      "members":{
+        "ExchangedReservedNode":{"shape":"ReservedNode"}
+      }
+    },
     "AccessToSnapshotDeniedFault":{
       "type":"structure",
       "members":{
@@ -2755,10 +1426,24 @@
       },
       "exception":true
     },
+    "AccountAttribute":{
+      "type":"structure",
+      "members":{
+        "AttributeName":{"shape":"String"},
+        "AttributeValues":{"shape":"AttributeValueList"}
+      }
+    },
+    "AccountAttributeList":{
+      "type":"structure",
+      "members":{
+        "AccountAttributes":{"shape":"AttributeList"}
+      }
+    },
     "AccountWithRestoreAccess":{
       "type":"structure",
       "members":{
-        "AccountId":{"shape":"String"}
+        "AccountId":{"shape":"String"},
+        "AccountAlias":{"shape":"String"}
       }
     },
     "AccountsWithRestoreAccessList":{
@@ -2766,6 +1451,40 @@
       "member":{
         "shape":"AccountWithRestoreAccess",
         "locationName":"AccountWithRestoreAccess"
+      }
+    },
+    "AssociatedClusterList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterAssociatedToSchedule",
+        "locationName":"ClusterAssociatedToSchedule"
+      }
+    },
+    "AttributeList":{
+      "type":"list",
+      "member":{
+        "shape":"AccountAttribute",
+        "locationName":"AccountAttribute"
+      }
+    },
+    "AttributeNameList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"AttributeName"
+      }
+    },
+    "AttributeValueList":{
+      "type":"list",
+      "member":{
+        "shape":"AttributeValueTarget",
+        "locationName":"AttributeValueTarget"
+      }
+    },
+    "AttributeValueTarget":{
+      "type":"structure",
+      "members":{
+        "AttributeValue":{"shape":"String"}
       }
     },
     "AuthorizationAlreadyExistsFault":{
@@ -2811,6 +1530,12 @@
         "EC2SecurityGroupOwnerId":{"shape":"String"}
       }
     },
+    "AuthorizeClusterSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
+      }
+    },
     "AuthorizeSnapshotAccessMessage":{
       "type":"structure",
       "required":[
@@ -2823,10 +1548,17 @@
         "AccountWithRestoreAccess":{"shape":"String"}
       }
     },
+    "AuthorizeSnapshotAccessResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
+      }
+    },
     "AvailabilityZone":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"String"}
+        "Name":{"shape":"String"},
+        "SupportedPlatforms":{"shape":"SupportedPlatformsList"}
       },
       "wrapper":true
     },
@@ -2835,6 +1567,72 @@
       "member":{
         "shape":"AvailabilityZone",
         "locationName":"AvailabilityZone"
+      }
+    },
+    "BatchDeleteClusterSnapshotsRequest":{
+      "type":"structure",
+      "required":["Identifiers"],
+      "members":{
+        "Identifiers":{"shape":"DeleteClusterSnapshotMessageList"}
+      }
+    },
+    "BatchDeleteClusterSnapshotsResult":{
+      "type":"structure",
+      "members":{
+        "Resources":{"shape":"SnapshotIdentifierList"},
+        "Errors":{"shape":"BatchSnapshotOperationErrorList"}
+      }
+    },
+    "BatchDeleteRequestSizeExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"BatchDeleteRequestSizeExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchModifyClusterSnapshotsLimitExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"BatchModifyClusterSnapshotsLimitExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "BatchModifyClusterSnapshotsMessage":{
+      "type":"structure",
+      "required":["SnapshotIdentifierList"],
+      "members":{
+        "SnapshotIdentifierList":{"shape":"SnapshotIdentifierList"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "Force":{"shape":"Boolean"}
+      }
+    },
+    "BatchModifyClusterSnapshotsOutputMessage":{
+      "type":"structure",
+      "members":{
+        "Resources":{"shape":"SnapshotIdentifierList"},
+        "Errors":{"shape":"BatchSnapshotOperationErrors"}
+      }
+    },
+    "BatchSnapshotOperationErrorList":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotErrorMessage",
+        "locationName":"SnapshotErrorMessage"
+      }
+    },
+    "BatchSnapshotOperationErrors":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotErrorMessage",
+        "locationName":"SnapshotErrorMessage"
       }
     },
     "Boolean":{"type":"boolean"},
@@ -2850,18 +1648,27 @@
       },
       "exception":true
     },
+    "CancelResizeMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"}
+      }
+    },
     "Cluster":{
       "type":"structure",
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "NodeType":{"shape":"String"},
         "ClusterStatus":{"shape":"String"},
+        "ClusterAvailabilityStatus":{"shape":"String"},
         "ModifyStatus":{"shape":"String"},
         "MasterUsername":{"shape":"String"},
         "DBName":{"shape":"String"},
         "Endpoint":{"shape":"Endpoint"},
         "ClusterCreateTime":{"shape":"TStamp"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"Integer"},
+        "ManualSnapshotRetentionPeriod":{"shape":"Integer"},
         "ClusterSecurityGroups":{"shape":"ClusterSecurityGroupMembershipList"},
         "VpcSecurityGroups":{"shape":"VpcSecurityGroupMembershipList"},
         "ClusterParameterGroups":{"shape":"ClusterParameterGroupStatusList"},
@@ -2876,6 +1683,7 @@
         "PubliclyAccessible":{"shape":"Boolean"},
         "Encrypted":{"shape":"Boolean"},
         "RestoreStatus":{"shape":"RestoreStatus"},
+        "DataTransferProgress":{"shape":"DataTransferProgress"},
         "HsmStatus":{"shape":"HsmStatus"},
         "ClusterSnapshotCopyStatus":{"shape":"ClusterSnapshotCopyStatus"},
         "ClusterPublicKey":{"shape":"String"},
@@ -2883,7 +1691,18 @@
         "ElasticIpStatus":{"shape":"ElasticIpStatus"},
         "ClusterRevisionNumber":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "EnhancedVpcRouting":{"shape":"Boolean"},
+        "IamRoles":{"shape":"ClusterIamRoleList"},
+        "PendingActions":{"shape":"PendingActionsList"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "ElasticResizeNumberOfNodeOptions":{"shape":"String"},
+        "DeferredMaintenanceWindows":{"shape":"DeferredMaintenanceWindowsList"},
+        "SnapshotScheduleIdentifier":{"shape":"String"},
+        "SnapshotScheduleState":{"shape":"ScheduleState"},
+        "ExpectedNextSnapshotScheduleTime":{"shape":"TStamp"},
+        "ExpectedNextSnapshotScheduleTimeStatus":{"shape":"String"},
+        "ResizeInfo":{"shape":"ResizeInfo"}
       },
       "wrapper":true
     },
@@ -2897,6 +1716,58 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ClusterAssociatedToSchedule":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ScheduleAssociationState":{"shape":"ScheduleState"}
+      }
+    },
+    "ClusterCredentials":{
+      "type":"structure",
+      "members":{
+        "DbUser":{"shape":"String"},
+        "DbPassword":{"shape":"SensitiveString"},
+        "Expiration":{"shape":"TStamp"}
+      }
+    },
+    "ClusterDbRevision":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "CurrentDatabaseRevision":{"shape":"String"},
+        "DatabaseRevisionReleaseDate":{"shape":"TStamp"},
+        "RevisionTargets":{"shape":"RevisionTargetsList"}
+      }
+    },
+    "ClusterDbRevisionsList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterDbRevision",
+        "locationName":"ClusterDbRevision"
+      }
+    },
+    "ClusterDbRevisionsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ClusterDbRevisions":{"shape":"ClusterDbRevisionsList"}
+      }
+    },
+    "ClusterIamRole":{
+      "type":"structure",
+      "members":{
+        "IamRoleArn":{"shape":"String"},
+        "ApplyStatus":{"shape":"String"}
+      }
+    },
+    "ClusterIamRoleList":{
+      "type":"list",
+      "member":{
+        "shape":"ClusterIamRole",
+        "locationName":"ClusterIamRole"
+      }
     },
     "ClusterList":{
       "type":"list",
@@ -2924,6 +1795,17 @@
       "error":{
         "code":"ClusterNotFound",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ClusterOnLatestRevisionFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ClusterOnLatestRevision",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -3125,6 +2007,7 @@
       "members":{
         "DestinationRegion":{"shape":"String"},
         "RetentionPeriod":{"shape":"Long"},
+        "ManualSnapshotRetentionPeriod":{"shape":"Integer"},
         "SnapshotCopyGrantName":{"shape":"String"}
       }
     },
@@ -3258,7 +2141,14 @@
       "members":{
         "SourceSnapshotIdentifier":{"shape":"String"},
         "SourceSnapshotClusterIdentifier":{"shape":"String"},
-        "TargetSnapshotIdentifier":{"shape":"String"}
+        "TargetSnapshotIdentifier":{"shape":"String"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"}
+      }
+    },
+    "CopyClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
       }
     },
     "CopyToRegionDisabledFault":{
@@ -3294,6 +2184,7 @@
         "PreferredMaintenanceWindow":{"shape":"String"},
         "ClusterParameterGroupName":{"shape":"String"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "Port":{"shape":"IntegerOptional"},
         "ClusterVersion":{"shape":"String"},
         "AllowVersionUpgrade":{"shape":"BooleanOptional"},
@@ -3304,7 +2195,12 @@
         "HsmConfigurationIdentifier":{"shape":"String"},
         "ElasticIp":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "AdditionalInfo":{"shape":"String"},
+        "IamRoles":{"shape":"IamRoleArnList"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "SnapshotScheduleIdentifier":{"shape":"String"}
       }
     },
     "CreateClusterParameterGroupMessage":{
@@ -3321,6 +2217,18 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CreateClusterParameterGroupResult":{
+      "type":"structure",
+      "members":{
+        "ClusterParameterGroup":{"shape":"ClusterParameterGroup"}
+      }
+    },
+    "CreateClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "CreateClusterSecurityGroupMessage":{
       "type":"structure",
       "required":[
@@ -3333,6 +2241,12 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CreateClusterSecurityGroupResult":{
+      "type":"structure",
+      "members":{
+        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
+      }
+    },
     "CreateClusterSnapshotMessage":{
       "type":"structure",
       "required":[
@@ -3342,7 +2256,14 @@
       "members":{
         "SnapshotIdentifier":{"shape":"String"},
         "ClusterIdentifier":{"shape":"String"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
       }
     },
     "CreateClusterSubnetGroupMessage":{
@@ -3357,6 +2278,12 @@
         "Description":{"shape":"String"},
         "SubnetIds":{"shape":"SubnetIdentifierList"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateClusterSubnetGroupResult":{
+      "type":"structure",
+      "members":{
+        "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
       }
     },
     "CreateEventSubscriptionMessage":{
@@ -3376,12 +2303,24 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CreateEventSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "CreateHsmClientCertificateMessage":{
       "type":"structure",
       "required":["HsmClientCertificateIdentifier"],
       "members":{
         "HsmClientCertificateIdentifier":{"shape":"String"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateHsmClientCertificateResult":{
+      "type":"structure",
+      "members":{
+        "HsmClientCertificate":{"shape":"HsmClientCertificate"}
       }
     },
     "CreateHsmConfigurationMessage":{
@@ -3404,6 +2343,12 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CreateHsmConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "HsmConfiguration":{"shape":"HsmConfiguration"}
+      }
+    },
     "CreateSnapshotCopyGrantMessage":{
       "type":"structure",
       "required":["SnapshotCopyGrantName"],
@@ -3411,6 +2356,23 @@
         "SnapshotCopyGrantName":{"shape":"String"},
         "KmsKeyId":{"shape":"String"},
         "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateSnapshotCopyGrantResult":{
+      "type":"structure",
+      "members":{
+        "SnapshotCopyGrant":{"shape":"SnapshotCopyGrant"}
+      }
+    },
+    "CreateSnapshotScheduleMessage":{
+      "type":"structure",
+      "members":{
+        "ScheduleDefinitions":{"shape":"ScheduleDefinitionList"},
+        "ScheduleIdentifier":{"shape":"String"},
+        "ScheduleDescription":{"shape":"String"},
+        "Tags":{"shape":"TagList"},
+        "DryRun":{"shape":"BooleanOptional"},
+        "NextInvocations":{"shape":"IntegerOptional"}
       }
     },
     "CreateTagsMessage":{
@@ -3424,6 +2386,31 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "CustomerStorageMessage":{
+      "type":"structure",
+      "members":{
+        "TotalBackupSizeInMegaBytes":{"shape":"Double"},
+        "TotalProvisionedStorageInMegaBytes":{"shape":"Double"}
+      }
+    },
+    "DataTransferProgress":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"String"},
+        "CurrentRateInMegaBytesPerSecond":{"shape":"DoubleOptional"},
+        "TotalDataInMegaBytes":{"shape":"Long"},
+        "DataTransferredInMegaBytes":{"shape":"Long"},
+        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
+        "ElapsedTimeInSeconds":{"shape":"LongOptional"}
+      }
+    },
+    "DbGroupList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"DbGroup"
+      }
+    },
     "DefaultClusterParameters":{
       "type":"structure",
       "members":{
@@ -3433,13 +2420,29 @@
       },
       "wrapper":true
     },
+    "DeferredMaintenanceWindow":{
+      "type":"structure",
+      "members":{
+        "DeferMaintenanceIdentifier":{"shape":"String"},
+        "DeferMaintenanceStartTime":{"shape":"TStamp"},
+        "DeferMaintenanceEndTime":{"shape":"TStamp"}
+      }
+    },
+    "DeferredMaintenanceWindowsList":{
+      "type":"list",
+      "member":{
+        "shape":"DeferredMaintenanceWindow",
+        "locationName":"DeferredMaintenanceWindow"
+      }
+    },
     "DeleteClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"},
         "SkipFinalClusterSnapshot":{"shape":"Boolean"},
-        "FinalClusterSnapshotIdentifier":{"shape":"String"}
+        "FinalClusterSnapshotIdentifier":{"shape":"String"},
+        "FinalClusterSnapshotRetentionPeriod":{"shape":"IntegerOptional"}
       }
     },
     "DeleteClusterParameterGroupMessage":{
@@ -3447,6 +2450,12 @@
       "required":["ParameterGroupName"],
       "members":{
         "ParameterGroupName":{"shape":"String"}
+      }
+    },
+    "DeleteClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "DeleteClusterSecurityGroupMessage":{
@@ -3462,6 +2471,19 @@
       "members":{
         "SnapshotIdentifier":{"shape":"String"},
         "SnapshotClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "DeleteClusterSnapshotMessageList":{
+      "type":"list",
+      "member":{
+        "shape":"DeleteClusterSnapshotMessage",
+        "locationName":"DeleteClusterSnapshotMessage"
+      }
+    },
+    "DeleteClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
       }
     },
     "DeleteClusterSubnetGroupMessage":{
@@ -3499,6 +2521,13 @@
         "SnapshotCopyGrantName":{"shape":"String"}
       }
     },
+    "DeleteSnapshotScheduleMessage":{
+      "type":"structure",
+      "required":["ScheduleIdentifier"],
+      "members":{
+        "ScheduleIdentifier":{"shape":"String"}
+      }
+    },
     "DeleteTagsMessage":{
       "type":"structure",
       "required":[
@@ -3508,6 +2537,42 @@
       "members":{
         "ResourceName":{"shape":"String"},
         "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "DependentServiceRequestThrottlingFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DependentServiceRequestThrottlingFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DependentServiceUnavailableFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DependentServiceUnavailableFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DescribeAccountAttributesMessage":{
+      "type":"structure",
+      "members":{
+        "AttributeNames":{"shape":"AttributeNameList"}
+      }
+    },
+    "DescribeClusterDbRevisionsMessage":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeClusterParameterGroupsMessage":{
@@ -3552,7 +2617,9 @@
         "Marker":{"shape":"String"},
         "OwnerAccount":{"shape":"String"},
         "TagKeys":{"shape":"TagKeyList"},
-        "TagValues":{"shape":"TagValueList"}
+        "TagValues":{"shape":"TagValueList"},
+        "ClusterExists":{"shape":"BooleanOptional"},
+        "SortingEntities":{"shape":"SnapshotSortingEntityList"}
       }
     },
     "DescribeClusterSubnetGroupsMessage":{
@@ -3563,6 +2630,14 @@
         "Marker":{"shape":"String"},
         "TagKeys":{"shape":"TagKeyList"},
         "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "DescribeClusterTracksMessage":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeClusterVersionsMessage":{
@@ -3593,6 +2668,12 @@
         "Marker":{"shape":"String"}
       }
     },
+    "DescribeDefaultClusterParametersResult":{
+      "type":"structure",
+      "members":{
+        "DefaultClusterParameters":{"shape":"DefaultClusterParameters"}
+      }
+    },
     "DescribeEventCategoriesMessage":{
       "type":"structure",
       "members":{
@@ -3604,7 +2685,9 @@
       "members":{
         "SubscriptionName":{"shape":"String"},
         "MaxRecords":{"shape":"IntegerOptional"},
-        "Marker":{"shape":"String"}
+        "Marker":{"shape":"String"},
+        "TagKeys":{"shape":"TagKeyList"},
+        "TagValues":{"shape":"TagValueList"}
       }
     },
     "DescribeEventsMessage":{
@@ -3688,6 +2771,33 @@
         "TagValues":{"shape":"TagValueList"}
       }
     },
+    "DescribeSnapshotSchedulesMessage":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ScheduleIdentifier":{"shape":"String"},
+        "TagKeys":{"shape":"TagKeyList"},
+        "TagValues":{"shape":"TagValueList"},
+        "Marker":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"}
+      }
+    },
+    "DescribeSnapshotSchedulesOutputMessage":{
+      "type":"structure",
+      "members":{
+        "SnapshotSchedules":{"shape":"SnapshotScheduleList"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeTableRestoreStatusMessage":{
+      "type":"structure",
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "TableRestoreRequestId":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeTagsMessage":{
       "type":"structure",
       "members":{
@@ -3711,6 +2821,12 @@
       "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "DisableSnapshotCopyResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "Double":{"type":"double"},
@@ -3738,6 +2854,13 @@
         "Status":{"shape":"String"}
       }
     },
+    "EligibleTracksToUpdateList":{
+      "type":"list",
+      "member":{
+        "shape":"UpdateTarget",
+        "locationName":"UpdateTarget"
+      }
+    },
     "EnableLoggingMessage":{
       "type":"structure",
       "required":[
@@ -3760,7 +2883,14 @@
         "ClusterIdentifier":{"shape":"String"},
         "DestinationRegion":{"shape":"String"},
         "RetentionPeriod":{"shape":"IntegerOptional"},
-        "SnapshotCopyGrantName":{"shape":"String"}
+        "SnapshotCopyGrantName":{"shape":"String"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"}
+      }
+    },
+    "EnableSnapshotCopyResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "Endpoint":{
@@ -3881,6 +3011,37 @@
       "members":{
         "Marker":{"shape":"String"},
         "Events":{"shape":"EventList"}
+      }
+    },
+    "GetClusterCredentialsMessage":{
+      "type":"structure",
+      "required":[
+        "DbUser",
+        "ClusterIdentifier"
+      ],
+      "members":{
+        "DbUser":{"shape":"String"},
+        "DbName":{"shape":"String"},
+        "ClusterIdentifier":{"shape":"String"},
+        "DurationSeconds":{"shape":"IntegerOptional"},
+        "AutoCreate":{"shape":"BooleanOptional"},
+        "DbGroups":{"shape":"DbGroupList"}
+      }
+    },
+    "GetReservedNodeExchangeOfferingsInputMessage":{
+      "type":"structure",
+      "required":["ReservedNodeId"],
+      "members":{
+        "ReservedNodeId":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "GetReservedNodeExchangeOfferingsOutputMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "ReservedNodeOfferings":{"shape":"ReservedNodeOfferingList"}
       }
     },
     "HsmClientCertificate":{
@@ -4020,6 +3181,13 @@
         "locationName":"IPRange"
       }
     },
+    "IamRoleArnList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"IamRoleArn"
+      }
+    },
     "ImportTablesCompleted":{
       "type":"list",
       "member":{"shape":"String"}
@@ -4031,6 +3199,17 @@
     "ImportTablesNotStarted":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "InProgressTableRestoreQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InProgressTableRestoreQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "IncompatibleOrderableOptions":{
       "type":"structure",
@@ -4089,6 +3268,17 @@
       },
       "exception":true
     },
+    "InvalidClusterSnapshotScheduleStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidClusterSnapshotScheduleState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidClusterSnapshotStateFault":{
       "type":"structure",
       "members":{
@@ -4133,6 +3323,17 @@
       },
       "exception":true
     },
+    "InvalidClusterTrackFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidClusterTrack",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidElasticIpFault":{
       "type":"structure",
       "members":{
@@ -4166,6 +3367,17 @@
       },
       "exception":true
     },
+    "InvalidReservedNodeStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidReservedNodeState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidRestoreFault":{
       "type":"structure",
       "members":{
@@ -4173,6 +3385,17 @@
       "error":{
         "code":"InvalidRestore",
         "httpStatusCode":406,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidRetentionPeriodFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidRetentionPeriodFault",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -4194,6 +3417,17 @@
       },
       "error":{
         "code":"InvalidS3KeyPrefixFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidScheduleFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidSchedule",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -4227,6 +3461,17 @@
       },
       "error":{
         "code":"InvalidSubscriptionStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InvalidTableRestoreArgumentFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidTableRestoreArgument",
         "httpStatusCode":400,
         "senderFault":true
       },
@@ -4278,6 +3523,64 @@
     },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
+    "MaintenanceTrack":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "DatabaseVersion":{"shape":"String"},
+        "UpdateTargets":{"shape":"EligibleTracksToUpdateList"}
+      }
+    },
+    "ModifyClusterDbRevisionMessage":{
+      "type":"structure",
+      "required":[
+        "ClusterIdentifier",
+        "RevisionTarget"
+      ],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "RevisionTarget":{"shape":"String"}
+      }
+    },
+    "ModifyClusterDbRevisionResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ModifyClusterIamRolesMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "AddIamRoles":{"shape":"IamRoleArnList"},
+        "RemoveIamRoles":{"shape":"IamRoleArnList"}
+      }
+    },
+    "ModifyClusterIamRolesResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ModifyClusterMaintenanceMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "DeferMaintenance":{"shape":"BooleanOptional"},
+        "DeferMaintenanceIdentifier":{"shape":"String"},
+        "DeferMaintenanceStartTime":{"shape":"TStamp"},
+        "DeferMaintenanceEndTime":{"shape":"TStamp"},
+        "DeferMaintenanceDuration":{"shape":"IntegerOptional"}
+      }
+    },
+    "ModifyClusterMaintenanceResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
     "ModifyClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -4291,12 +3594,19 @@
         "MasterUserPassword":{"shape":"String"},
         "ClusterParameterGroupName":{"shape":"String"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "ClusterVersion":{"shape":"String"},
         "AllowVersionUpgrade":{"shape":"BooleanOptional"},
         "HsmClientCertificateIdentifier":{"shape":"String"},
         "HsmConfigurationIdentifier":{"shape":"String"},
-        "NewClusterIdentifier":{"shape":"String"}
+        "NewClusterIdentifier":{"shape":"String"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "ElasticIp":{"shape":"String"},
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "Encrypted":{"shape":"BooleanOptional"},
+        "KmsKeyId":{"shape":"String"}
       }
     },
     "ModifyClusterParameterGroupMessage":{
@@ -4310,6 +3620,36 @@
         "Parameters":{"shape":"ParametersList"}
       }
     },
+    "ModifyClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ModifyClusterSnapshotMessage":{
+      "type":"structure",
+      "required":["SnapshotIdentifier"],
+      "members":{
+        "SnapshotIdentifier":{"shape":"String"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "Force":{"shape":"Boolean"}
+      }
+    },
+    "ModifyClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
+      }
+    },
+    "ModifyClusterSnapshotScheduleMessage":{
+      "type":"structure",
+      "required":["ClusterIdentifier"],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ScheduleIdentifier":{"shape":"String"},
+        "DisassociateSchedule":{"shape":"BooleanOptional"}
+      }
+    },
     "ModifyClusterSubnetGroupMessage":{
       "type":"structure",
       "required":[
@@ -4320,6 +3660,12 @@
         "ClusterSubnetGroupName":{"shape":"String"},
         "Description":{"shape":"String"},
         "SubnetIds":{"shape":"SubnetIdentifierList"}
+      }
+    },
+    "ModifyClusterSubnetGroupResult":{
+      "type":"structure",
+      "members":{
+        "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
       }
     },
     "ModifyEventSubscriptionMessage":{
@@ -4335,6 +3681,12 @@
         "Enabled":{"shape":"BooleanOptional"}
       }
     },
+    "ModifyEventSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "ModifySnapshotCopyRetentionPeriodMessage":{
       "type":"structure",
       "required":[
@@ -4343,7 +3695,25 @@
       ],
       "members":{
         "ClusterIdentifier":{"shape":"String"},
-        "RetentionPeriod":{"shape":"Integer"}
+        "RetentionPeriod":{"shape":"Integer"},
+        "Manual":{"shape":"Boolean"}
+      }
+    },
+    "ModifySnapshotCopyRetentionPeriodResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ModifySnapshotScheduleMessage":{
+      "type":"structure",
+      "required":[
+        "ScheduleIdentifier",
+        "ScheduleDefinitions"
+      ],
+      "members":{
+        "ScheduleIdentifier":{"shape":"String"},
+        "ScheduleDefinitions":{"shape":"ScheduleDefinitionList"}
       }
     },
     "NumberOfNodesPerClusterLimitExceededFault":{
@@ -4427,6 +3797,10 @@
         "locationName":"Parameter"
       }
     },
+    "PendingActionsList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
@@ -4436,7 +3810,11 @@
         "ClusterType":{"shape":"String"},
         "ClusterVersion":{"shape":"String"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
-        "ClusterIdentifier":{"shape":"String"}
+        "ClusterIdentifier":{"shape":"String"},
+        "PubliclyAccessible":{"shape":"BooleanOptional"},
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "EncryptionType":{"shape":"String"}
       }
     },
     "PurchaseReservedNodeOfferingMessage":{
@@ -4447,11 +3825,23 @@
         "NodeCount":{"shape":"IntegerOptional"}
       }
     },
+    "PurchaseReservedNodeOfferingResult":{
+      "type":"structure",
+      "members":{
+        "ReservedNode":{"shape":"ReservedNode"}
+      }
+    },
     "RebootClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "RebootClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "RecurringCharge":{
@@ -4483,7 +3873,8 @@
         "NodeCount":{"shape":"Integer"},
         "State":{"shape":"String"},
         "OfferingType":{"shape":"String"},
-        "RecurringCharges":{"shape":"RecurringChargeList"}
+        "RecurringCharges":{"shape":"RecurringChargeList"},
+        "ReservedNodeOfferingType":{"shape":"ReservedNodeOfferingType"}
       },
       "wrapper":true
     },
@@ -4494,6 +3885,17 @@
       "error":{
         "code":"ReservedNodeAlreadyExists",
         "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ReservedNodeAlreadyMigratedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ReservedNodeAlreadyMigrated",
+        "httpStatusCode":400,
         "senderFault":true
       },
       "exception":true
@@ -4526,7 +3928,8 @@
         "UsagePrice":{"shape":"Double"},
         "CurrencyCode":{"shape":"String"},
         "OfferingType":{"shape":"String"},
-        "RecurringCharges":{"shape":"RecurringChargeList"}
+        "RecurringCharges":{"shape":"RecurringChargeList"},
+        "ReservedNodeOfferingType":{"shape":"ReservedNodeOfferingType"}
       },
       "wrapper":true
     },
@@ -4547,6 +3950,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ReservedNodeOfferingType":{
+      "type":"string",
+      "enum":[
+        "Regular",
+        "Upgradable"
+      ]
     },
     "ReservedNodeOfferingsMessage":{
       "type":"structure",
@@ -4582,6 +3992,33 @@
         "Parameters":{"shape":"ParametersList"}
       }
     },
+    "ResizeClusterMessage":{
+      "type":"structure",
+      "required":[
+        "ClusterIdentifier",
+        "NumberOfNodes"
+      ],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "ClusterType":{"shape":"String"},
+        "NodeType":{"shape":"String"},
+        "NumberOfNodes":{"shape":"Integer"},
+        "Classic":{"shape":"BooleanOptional"}
+      }
+    },
+    "ResizeClusterResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
+      }
+    },
+    "ResizeInfo":{
+      "type":"structure",
+      "members":{
+        "ResizeType":{"shape":"String"},
+        "AllowCancelResize":{"shape":"Boolean"}
+      }
+    },
     "ResizeNotFoundFault":{
       "type":"structure",
       "members":{
@@ -4607,7 +4044,11 @@
         "TotalResizeDataInMegaBytes":{"shape":"LongOptional"},
         "ProgressInMegaBytes":{"shape":"LongOptional"},
         "ElapsedTimeInSeconds":{"shape":"LongOptional"},
-        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"}
+        "EstimatedTimeToCompletionInSeconds":{"shape":"LongOptional"},
+        "ResizeType":{"shape":"String"},
+        "Message":{"shape":"String"},
+        "TargetEncryptionType":{"shape":"String"},
+        "DataTransferProgressPercent":{"shape":"DoubleOptional"}
       }
     },
     "ResourceNotFoundFault":{
@@ -4652,8 +4093,20 @@
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "AutomatedSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
         "KmsKeyId":{"shape":"String"},
-        "NodeType":{"shape":"String"}
+        "NodeType":{"shape":"String"},
+        "EnhancedVpcRouting":{"shape":"BooleanOptional"},
+        "AdditionalInfo":{"shape":"String"},
+        "IamRoles":{"shape":"IamRoleArnList"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "SnapshotScheduleIdentifier":{"shape":"String"}
+      }
+    },
+    "RestoreFromClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "RestoreStatus":{
@@ -4667,6 +4120,47 @@
         "EstimatedTimeToCompletionInSeconds":{"shape":"Long"}
       }
     },
+    "RestoreTableFromClusterSnapshotMessage":{
+      "type":"structure",
+      "required":[
+        "ClusterIdentifier",
+        "SnapshotIdentifier",
+        "SourceDatabaseName",
+        "SourceTableName",
+        "NewTableName"
+      ],
+      "members":{
+        "ClusterIdentifier":{"shape":"String"},
+        "SnapshotIdentifier":{"shape":"String"},
+        "SourceDatabaseName":{"shape":"String"},
+        "SourceSchemaName":{"shape":"String"},
+        "SourceTableName":{"shape":"String"},
+        "TargetDatabaseName":{"shape":"String"},
+        "TargetSchemaName":{"shape":"String"},
+        "NewTableName":{"shape":"String"}
+      }
+    },
+    "RestoreTableFromClusterSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "TableRestoreStatus":{"shape":"TableRestoreStatus"}
+      }
+    },
+    "RevisionTarget":{
+      "type":"structure",
+      "members":{
+        "DatabaseRevision":{"shape":"String"},
+        "Description":{"shape":"String"},
+        "DatabaseRevisionReleaseDate":{"shape":"TStamp"}
+      }
+    },
+    "RevisionTargetsList":{
+      "type":"list",
+      "member":{
+        "shape":"RevisionTarget",
+        "locationName":"RevisionTarget"
+      }
+    },
     "RevokeClusterSecurityGroupIngressMessage":{
       "type":"structure",
       "required":["ClusterSecurityGroupName"],
@@ -4675,6 +4169,12 @@
         "CIDRIP":{"shape":"String"},
         "EC2SecurityGroupName":{"shape":"String"},
         "EC2SecurityGroupOwnerId":{"shape":"String"}
+      }
+    },
+    "RevokeClusterSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
       }
     },
     "RevokeSnapshotAccessMessage":{
@@ -4689,11 +4189,23 @@
         "AccountWithRestoreAccess":{"shape":"String"}
       }
     },
+    "RevokeSnapshotAccessResult":{
+      "type":"structure",
+      "members":{
+        "Snapshot":{"shape":"Snapshot"}
+      }
+    },
     "RotateEncryptionKeyMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
       "members":{
         "ClusterIdentifier":{"shape":"String"}
+      }
+    },
+    "RotateEncryptionKeyResult":{
+      "type":"structure",
+      "members":{
+        "Cluster":{"shape":"Cluster"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -4729,6 +4241,43 @@
       },
       "exception":true
     },
+    "ScheduleDefinitionList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"ScheduleDefinition"
+      }
+    },
+    "ScheduleDefinitionTypeUnsupportedFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"ScheduleDefinitionTypeUnsupported",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ScheduleState":{
+      "type":"string",
+      "enum":[
+        "MODIFYING",
+        "ACTIVE",
+        "FAILED"
+      ]
+    },
+    "ScheduledSnapshotTimeList":{
+      "type":"list",
+      "member":{
+        "shape":"TStamp",
+        "locationName":"SnapshotTime"
+      }
+    },
+    "SensitiveString":{
+      "type":"string",
+      "sensitive":true
+    },
     "Snapshot":{
       "type":"structure",
       "members":{
@@ -4759,9 +4308,22 @@
         "ElapsedTimeInSeconds":{"shape":"Long"},
         "SourceRegion":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "RestorableNodeTypes":{"shape":"RestorableNodeTypeList"}
+        "RestorableNodeTypes":{"shape":"RestorableNodeTypeList"},
+        "EnhancedVpcRouting":{"shape":"Boolean"},
+        "MaintenanceTrackName":{"shape":"String"},
+        "ManualSnapshotRetentionPeriod":{"shape":"IntegerOptional"},
+        "ManualSnapshotRemainingDays":{"shape":"IntegerOptional"},
+        "SnapshotRetentionStartTime":{"shape":"TStamp"}
       },
       "wrapper":true
+    },
+    "SnapshotAttributeToSortBy":{
+      "type":"string",
+      "enum":[
+        "SOURCE_TYPE",
+        "TOTAL_SIZE",
+        "CREATE_TIME"
+      ]
     },
     "SnapshotCopyAlreadyDisabledFault":{
       "type":"structure",
@@ -4852,6 +4414,22 @@
       },
       "exception":true
     },
+    "SnapshotErrorMessage":{
+      "type":"structure",
+      "members":{
+        "SnapshotIdentifier":{"shape":"String"},
+        "SnapshotClusterIdentifier":{"shape":"String"},
+        "FailureCode":{"shape":"String"},
+        "FailureReason":{"shape":"String"}
+      }
+    },
+    "SnapshotIdentifierList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"String"
+      }
+    },
     "SnapshotList":{
       "type":"list",
       "member":{
@@ -4865,6 +4443,91 @@
         "Marker":{"shape":"String"},
         "Snapshots":{"shape":"SnapshotList"}
       }
+    },
+    "SnapshotSchedule":{
+      "type":"structure",
+      "members":{
+        "ScheduleDefinitions":{"shape":"ScheduleDefinitionList"},
+        "ScheduleIdentifier":{"shape":"String"},
+        "ScheduleDescription":{"shape":"String"},
+        "Tags":{"shape":"TagList"},
+        "NextInvocations":{"shape":"ScheduledSnapshotTimeList"},
+        "AssociatedClusterCount":{"shape":"IntegerOptional"},
+        "AssociatedClusters":{"shape":"AssociatedClusterList"}
+      }
+    },
+    "SnapshotScheduleAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotScheduleAlreadyExists",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SnapshotScheduleList":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotSchedule",
+        "locationName":"SnapshotSchedule"
+      }
+    },
+    "SnapshotScheduleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotScheduleNotFound",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SnapshotScheduleQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotScheduleQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SnapshotScheduleUpdateInProgressFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SnapshotScheduleUpdateInProgress",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SnapshotSortingEntity":{
+      "type":"structure",
+      "required":["Attribute"],
+      "members":{
+        "Attribute":{"shape":"SnapshotAttributeToSortBy"},
+        "SortOrder":{"shape":"SortByOrder"}
+      }
+    },
+    "SnapshotSortingEntityList":{
+      "type":"list",
+      "member":{
+        "shape":"SnapshotSortingEntity",
+        "locationName":"SnapshotSortingEntity"
+      }
+    },
+    "SortByOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
     },
     "SourceIdsList":{
       "type":"list",
@@ -4982,7 +4645,100 @@
       },
       "exception":true
     },
+    "SupportedOperation":{
+      "type":"structure",
+      "members":{
+        "OperationName":{"shape":"String"}
+      }
+    },
+    "SupportedOperationList":{
+      "type":"list",
+      "member":{
+        "shape":"SupportedOperation",
+        "locationName":"SupportedOperation"
+      }
+    },
+    "SupportedPlatform":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"}
+      },
+      "wrapper":true
+    },
+    "SupportedPlatformsList":{
+      "type":"list",
+      "member":{
+        "shape":"SupportedPlatform",
+        "locationName":"SupportedPlatform"
+      }
+    },
     "TStamp":{"type":"timestamp"},
+    "TableLimitExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TableLimitExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TableRestoreNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TableRestoreNotFoundFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TableRestoreStatus":{
+      "type":"structure",
+      "members":{
+        "TableRestoreRequestId":{"shape":"String"},
+        "Status":{"shape":"TableRestoreStatusType"},
+        "Message":{"shape":"String"},
+        "RequestTime":{"shape":"TStamp"},
+        "ProgressInMegaBytes":{"shape":"LongOptional"},
+        "TotalDataInMegaBytes":{"shape":"LongOptional"},
+        "ClusterIdentifier":{"shape":"String"},
+        "SnapshotIdentifier":{"shape":"String"},
+        "SourceDatabaseName":{"shape":"String"},
+        "SourceSchemaName":{"shape":"String"},
+        "SourceTableName":{"shape":"String"},
+        "TargetDatabaseName":{"shape":"String"},
+        "TargetSchemaName":{"shape":"String"},
+        "NewTableName":{"shape":"String"}
+      },
+      "wrapper":true
+    },
+    "TableRestoreStatusList":{
+      "type":"list",
+      "member":{
+        "shape":"TableRestoreStatus",
+        "locationName":"TableRestoreStatus"
+      }
+    },
+    "TableRestoreStatusMessage":{
+      "type":"structure",
+      "members":{
+        "TableRestoreStatusDetails":{"shape":"TableRestoreStatusList"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "TableRestoreStatusType":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED",
+        "CANCELED"
+      ]
+    },
     "Tag":{
       "type":"structure",
       "members":{
@@ -5044,6 +4800,20 @@
         "Marker":{"shape":"String"}
       }
     },
+    "TrackList":{
+      "type":"list",
+      "member":{
+        "shape":"MaintenanceTrack",
+        "locationName":"MaintenanceTrack"
+      }
+    },
+    "TrackListMessage":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTracks":{"shape":"TrackList"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "UnauthorizedOperation":{
       "type":"structure",
       "members":{
@@ -5088,6 +4858,14 @@
       },
       "exception":true
     },
+    "UpdateTarget":{
+      "type":"structure",
+      "members":{
+        "MaintenanceTrackName":{"shape":"String"},
+        "DatabaseVersion":{"shape":"String"},
+        "SupportedOperations":{"shape":"SupportedOperationList"}
+      }
+    },
     "VpcSecurityGroupIdList":{
       "type":"list",
       "member":{
@@ -5107,168 +4885,6 @@
       "member":{
         "shape":"VpcSecurityGroupMembership",
         "locationName":"VpcSecurityGroup"
-      }
-    },
-    "AuthorizeClusterSecurityGroupIngressResult":{
-      "type":"structure",
-      "members":{
-        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
-      }
-    },
-    "AuthorizeSnapshotAccessResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "CopyClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "CreateClusterResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "CreateClusterParameterGroupResult":{
-      "type":"structure",
-      "members":{
-        "ClusterParameterGroup":{"shape":"ClusterParameterGroup"}
-      }
-    },
-    "CreateClusterSecurityGroupResult":{
-      "type":"structure",
-      "members":{
-        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
-      }
-    },
-    "CreateClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "CreateClusterSubnetGroupResult":{
-      "type":"structure",
-      "members":{
-        "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
-      }
-    },
-    "CreateEventSubscriptionResult":{
-      "type":"structure",
-      "members":{
-        "EventSubscription":{"shape":"EventSubscription"}
-      }
-    },
-    "CreateHsmClientCertificateResult":{
-      "type":"structure",
-      "members":{
-        "HsmClientCertificate":{"shape":"HsmClientCertificate"}
-      }
-    },
-    "CreateHsmConfigurationResult":{
-      "type":"structure",
-      "members":{
-        "HsmConfiguration":{"shape":"HsmConfiguration"}
-      }
-    },
-    "CreateSnapshotCopyGrantResult":{
-      "type":"structure",
-      "members":{
-        "SnapshotCopyGrant":{"shape":"SnapshotCopyGrant"}
-      }
-    },
-    "DeleteClusterResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "DeleteClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "DescribeDefaultClusterParametersResult":{
-      "type":"structure",
-      "members":{
-        "DefaultClusterParameters":{"shape":"DefaultClusterParameters"}
-      }
-    },
-    "DisableSnapshotCopyResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "EnableSnapshotCopyResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "ModifyClusterResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "ModifyClusterSubnetGroupResult":{
-      "type":"structure",
-      "members":{
-        "ClusterSubnetGroup":{"shape":"ClusterSubnetGroup"}
-      }
-    },
-    "ModifyEventSubscriptionResult":{
-      "type":"structure",
-      "members":{
-        "EventSubscription":{"shape":"EventSubscription"}
-      }
-    },
-    "ModifySnapshotCopyRetentionPeriodResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "PurchaseReservedNodeOfferingResult":{
-      "type":"structure",
-      "members":{
-        "ReservedNode":{"shape":"ReservedNode"}
-      }
-    },
-    "RebootClusterResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "RestoreFromClusterSnapshotResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
-      }
-    },
-    "RevokeClusterSecurityGroupIngressResult":{
-      "type":"structure",
-      "members":{
-        "ClusterSecurityGroup":{"shape":"ClusterSecurityGroup"}
-      }
-    },
-    "RevokeSnapshotAccessResult":{
-      "type":"structure",
-      "members":{
-        "Snapshot":{"shape":"Snapshot"}
-      }
-    },
-    "RotateEncryptionKeyResult":{
-      "type":"structure",
-      "members":{
-        "Cluster":{"shape":"Cluster"}
       }
     }
   }

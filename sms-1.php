@@ -20,9 +20,15 @@ use Aws\Exception\AwsException;
 
 
 $SnSclient = new SnsClient([
-    'profile' => __DIR__.'/credentials.csv',
+    'profile' => '',
     'region'  => 'ap-southeast-1',
     'version' => '2010-03-31'
+]);
+
+$SnSclient->SetSMSAttributes([
+    'attributes' => [
+        'DefaultSMSType' => 'Transactional',
+    ],
 ]);
 
 $message = 'This message is sent from a Amazon SNS code sample.';
